@@ -23,6 +23,7 @@ public class TakeInput {
                 addItemToOneOfThreeArrayLists(string, plusStrings, minusStrings, normalStrings);
             showResult(processes(idx, plusStrings, minusStrings, normalStrings));
         }
+        scanner.close();
     }
 
     private void showResult(Set<String> answer) {
