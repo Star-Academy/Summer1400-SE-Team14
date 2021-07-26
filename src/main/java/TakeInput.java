@@ -15,8 +15,7 @@ public class TakeInput {
         while (true) {
             String input = scanner.nextLine();
             String[] inputSplit = input.split("(\\s+)");
-            if (input.equals("--back"))
-                break;
+            if (input.equals("--back")) break;
             ArrayList<String> plusStrings = new ArrayList<>();
             ArrayList<String> minusStrings = new ArrayList<>();
             ArrayList<String> normalStrings = new ArrayList<>();
