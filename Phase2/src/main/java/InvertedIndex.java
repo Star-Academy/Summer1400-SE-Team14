@@ -44,7 +44,6 @@ public class InvertedIndex {
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
         convertFileToTokens(reader, fileNumber);
-
     }
 
     private void convertFileToTokens(BufferedReader reader, int fileNumber) throws IOException {
