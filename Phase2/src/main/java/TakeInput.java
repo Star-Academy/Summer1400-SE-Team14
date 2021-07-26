@@ -32,11 +32,9 @@ public class TakeInput {
 
     private void showResult(Set<String> answer) {
         for (String s : answer) System.out.println(s);
-
     }
 
-    private Set<String> processes(InvertedIndex idx, ArrayList<String> plusStrings,
-                                  ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
+    private Set<String> processes(InvertedIndex idx, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
         Set<String> answer = idx.search(plusStrings);
         Set<String> toDelete = idx.search(minusStrings);
         ArrayList<Set<String>> commons = new ArrayList<>();
@@ -50,8 +48,7 @@ public class TakeInput {
         return answer;
     }
 
-    private void addItemToOneOfThreeArrayLists(String string, ArrayList<String> plusStrings,
-                                               ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
+    private void addItemToOneOfThreeArrayLists(String string, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
         Pattern pattern = Pattern.compile("^\\+(.+)$");
         Matcher matcher = pattern.matcher(string);
         Pattern pattern1 = Pattern.compile("^-(.+)$");
@@ -64,6 +61,5 @@ public class TakeInput {
             minusStrings.add(a);
         } else normalStrings.add(string);
     }
-
 
 }
