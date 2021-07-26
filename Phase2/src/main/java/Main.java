@@ -1,6 +1,8 @@
 package main.java;
 
 import java.io.File;
+import java.net.URL;
+import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,12 +10,13 @@ public class Main {
     }
 
     public static void preprocesses() {
-        File directoryPath = new File("C:\\Users\\mjmah\\IdeaProjects\\codestar-intern-issues\\src\\main\\resources\\EnglishData");
+        URL url = Main.class.getResource("../resources/EnglishData");
+        assert url != null;
+        File directoryPath = new File(url.getPath());
         File[] filesList = directoryPath.listFiles();
         try {
             InvertedIndex idx = new InvertedIndex();
-            assert filesList != null;
-            for (File file : filesList) {
+            for (File file : Objects.requireNonNull(filesList)) {
                 idx.indexFile(file);
             }
             new TakeInput(idx);
