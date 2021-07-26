@@ -61,8 +61,8 @@ public class InvertedIndex {
 
     public Set<String> search(ArrayList<String> wordsToFind) {
         Set<String> answer = new HashSet<>();
-        for (String words : wordsToFind) {
-            String word = words.toLowerCase();
+        wordsToFind = normalizeInputWords(wordsToFind);
+        for (String word : wordsToFind) {
             for (String key : indexedWords.keySet()) {
                 Matcher matcher = Pattern.compile(word).matcher(key);
                 if (matcher.find()) {
@@ -76,6 +76,14 @@ public class InvertedIndex {
             }
         }
         return answer;
+    }
+
+    private ArrayList<String> normalizeInputWords(ArrayList<String> wordsToFind) {
+        ArrayList<String> returnArrayList = new ArrayList<>();
+        for (String string : wordsToFind) {
+            returnArrayList.add(string.toLowerCase());
+        }
+        return returnArrayList;
     }
 
     public Set<String> findCommonFiles(Set<String> answer, ArrayList<Set<String>> wordsToFindCommon) {
