@@ -43,8 +43,12 @@ public class InvertedIndex {
         }
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        for (String line = reader.readLine(); line != null; line = reader
-                .readLine()) {
+        convertFileToTokens(reader, fileNumber);
+
+    }
+
+    private void convertFileToTokens(BufferedReader reader, int fileNumber) throws IOException {
+        for (String line = reader.readLine(); line != null; line = reader.readLine()) {
             for (String _word : line.split("\\W+")) {
                 String word = _word.toLowerCase();
                 if (stopWords.contains(word))

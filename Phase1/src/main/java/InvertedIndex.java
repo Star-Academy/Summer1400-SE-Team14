@@ -1,3 +1,4 @@
+package main.java;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -43,8 +44,7 @@ public class InvertedIndex {
 
         int position = 0;
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        for (String line = reader.readLine(); line != null; line = reader
-                .readLine()) {
+        for (String line = reader.readLine(); line != null; line = reader.readLine()) {
             for (String _word : line.split("\\W+")) {
                 String word = _word.toLowerCase();
                 position++;
