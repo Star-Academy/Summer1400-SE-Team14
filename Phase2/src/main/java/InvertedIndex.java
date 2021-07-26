@@ -100,9 +100,11 @@ public class InvertedIndex {
     }
 
     public Set<String> deleteGivenFiles(Set<String> answer, Set<String> deleteFiles) {
-        for (String s : deleteFiles) {
-            answer.remove(s);
-        }
+        answer.retainAll(deleteFiles);
+        //OK?
+//        for (String s : deleteFiles) {
+//            answer.remove(s);
+//        }
         return answer;
     }
 
