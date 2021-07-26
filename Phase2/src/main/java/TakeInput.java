@@ -14,8 +14,8 @@ public class TakeInput {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
-            String[] inputSplit = input.split("(\\s+)");
             if (input.equals("--back")) break;
+            String[] inputSplit = splitInput(input);
             ArrayList<String> plusStrings = new ArrayList<>();
             ArrayList<String> minusStrings = new ArrayList<>();
             ArrayList<String> normalStrings = new ArrayList<>();
@@ -24,6 +24,10 @@ public class TakeInput {
             showResult(processes(idx, plusStrings, minusStrings, normalStrings));
         }
         scanner.close();
+    }
+
+    private String[] splitInput(String input) {
+        return input.split("(\\s+)");
     }
 
     private void showResult(Set<String> answer) {
