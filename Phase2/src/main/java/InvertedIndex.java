@@ -44,6 +44,7 @@ public class InvertedIndex {
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
         convertFileToTokens(reader, fileNumber);
+
     }
 
     private void convertFileToTokens(BufferedReader reader, int fileNumber) throws IOException {
@@ -99,14 +100,9 @@ public class InvertedIndex {
     }
 
     public Set<String> deleteGivenFiles(Set<String> answer, Set<String> deleteFiles) {
-        answer.retainAll(deleteFiles);
-        //OK?
-//        for (String s : deleteFiles) {
-//            answer.remove(s);
-//        }
+        answer.removeAll(deleteFiles);
         return answer;
     }
-
 
     public Set<String> findCommonWords(ArrayList<Set<String>> wordsToFindCommon) {
         if (wordsToFindCommon.size() > 0) {
