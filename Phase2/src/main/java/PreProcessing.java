@@ -14,7 +14,10 @@ public class PreProcessing {
             try {
                 InvertedIndex idx = new InvertedIndex();
                 if (filesList == null) System.out.println("INVALID FILE LIST!");
-                else addFilesToIndexFiles(filesList, idx);
+                else {
+                    addFilesToIndexFiles(filesList, idx);
+                    new TakeInput(idx);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -25,6 +28,5 @@ public class PreProcessing {
         for (File file : filesList) {
             idx.indexFile(file);
         }
-        new TakeInput(idx);
     }
 }
