@@ -100,15 +100,15 @@ public class InvertedIndex {
 
     public Set<String> findCommonFiles(Set<String> answer, ArrayList<Set<String>> wordsToFindCommon) {
         Set<String> commonWords = findCommonWords(wordsToFindCommon);
-        if (answer.size() > 0 && commonWords != null) {
+        if (answer.size() > 0 && commonWords.size() > 0) {
             answer.retainAll(commonWords);
             return answer;
         }
-        if (answer.size() == 0 && commonWords != null) {
+        if (answer.size() == 0 && commonWords.size() > 0) {
             return commonWords;
         }
         if (answer.size() == 0) {
-            return null;
+            return new HashSet<>();
         }
         return answer;
     }
@@ -119,17 +119,17 @@ public class InvertedIndex {
     }
 
     public Set<String> findCommonWords(ArrayList<Set<String>> wordsToFindCommon) {
-        if (wordsToFindCommon.size() > 0) {
-            Set<String> commonWords = wordsToFindCommon.get(0);
-
-            if (wordsToFindCommon.size() > 1) {
-                for (int i = 1; i < wordsToFindCommon.size(); i++) {
-                    commonWords.retainAll(wordsToFindCommon.get(i));
-                }
-            }
+        if (wordsToFindCommon.size() <= 0){
+            return new HashSet<>();
+        }
+        Set<String> commonWords = wordsToFindCommon.get(0);
+        if (wordsToFindCommon.size() == 1) {
             return commonWords;
         }
-        return null;
+        for (int i = 1; i < wordsToFindCommon.size(); i++) {
+            commonWords.retainAll(wordsToFindCommon.get(i));
+        }
+        return commonWords;
     }
 
     private static class Tuple {
