@@ -67,4 +67,54 @@ public class JavaTest {
         InputScannerView inputScannerView = new InputScannerView(invertedIndex, "friend");
         Assertions.assertEquals(file.getPath(), outContent.toString());
     }
+
+    @Test
+    public void checkFindCommonWords() {
+        InvertedIndex invertedIndex = new InvertedIndex();
+        Set<String> set = new HashSet<>();
+        ArrayList<Set<String>> arrayList = new ArrayList<>();
+        Assertions.assertEquals(invertedIndex.findCommonWords(arrayList), new HashSet<>());
+        arrayList.add(set);
+        set.add("asd");
+        Assertions.assertEquals(set, invertedIndex.findCommonWords(arrayList));
+        Set<String> set2 = new HashSet<>();
+        set2.add("ass");
+        arrayList.add(set2);
+        Assertions.assertEquals(set, invertedIndex.findCommonWords(arrayList));
+
+    }
+
+    @Test
+    public void checkDeleteGivenFiles(){
+        InvertedIndex invertedIndex = new InvertedIndex();
+        Set<String> set = new HashSet<>();
+        set.add("asd");
+        set.add("qwe");
+        Set<String> set2 = new HashSet<>();
+        set2.add("asd");
+        set.removeAll(set2);
+        Assertions.assertEquals(set, invertedIndex.deleteGivenFiles(set , set2));
+    }
+
+    @Test
+    public void checkFindCommonFiles(){
+        InvertedIndex invertedIndex = new InvertedIndex();
+        Set<String> answer = new HashSet<>();
+        Set<String> set = new HashSet<>();
+        set.add("asd");
+        set.add("qwe");
+        Set<String> set2 = new HashSet<>();
+        set2.add("asd");
+        ArrayList<Set<String>> arrayList = new ArrayList<>();
+        Assertions.assertEquals(new HashSet<>(), invertedIndex.findCommonFiles(answer , arrayList));
+
+        arrayList.add(set);
+        arrayList.add(set2);
+        Assertions.assertEquals(set2, invertedIndex.findCommonFiles(answer , arrayList));
+        answer.add("asd");
+
+        Assertions.assertEquals(answer, invertedIndex.findCommonFiles(answer , arrayList));
+        Assertions.assertEquals(answer, invertedIndex.findCommonFiles(answer , new  ArrayList<Set<String>>()));
+
+    }
 }
