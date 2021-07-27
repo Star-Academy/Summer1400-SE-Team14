@@ -49,13 +49,17 @@ public class InvertedIndex {
 
     private void convertFileToTokens(BufferedReader reader, int fileNumber) throws IOException {
         for (String line = reader.readLine(); line != null; line = reader.readLine()) {
-            for (String wordsInFiles : line.split("\\W+")) {
-                String word = wordsInFiles.toLowerCase();
-                if (stopWords.contains(word))
-                    continue;
-                List<Tuple> idx = indexedWords.computeIfAbsent(word, k -> new LinkedList<>());
-                idx.add(new Tuple(fileNumber));
-            }
+            importWordsInList(line, fileNumber);
+        }
+    }
+
+    private void importWordsInList(String line, int fileNumber) {
+        for (String wordsInFiles : line.split("\\W+")) {
+            String word = wordsInFiles.toLowerCase();
+            if (stopWords.contains(word))
+                continue;
+            List<Tuple> idx = indexedWords.computeIfAbsent(word, k -> new LinkedList<>());
+            idx.add(new Tuple(fileNumber));
         }
     }
 
