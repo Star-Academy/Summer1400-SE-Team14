@@ -20,9 +20,8 @@ public class PreProcessing {
                     return "end";
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                return "an error has happened!";
             }
-            return "an error has happened!";
         }
     }
 
