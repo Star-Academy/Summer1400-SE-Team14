@@ -5,34 +5,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InputScanner {
+    private InvertedIndex index;
 
     public InputScanner(InvertedIndex index) {
-        getOrder(index);
+        this.index = index;
     }
 
-    public void getOrder(InvertedIndex index) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String input = scanner.nextLine();
-            if (input.equals("--back")) break;
-            String[] inputSplit = splitInput(input);
-            ArrayList<String> plusStrings = new ArrayList<>();
-            ArrayList<String> minusStrings = new ArrayList<>();
-            ArrayList<String> normalStrings = new ArrayList<>();
-            for (String string : inputSplit)
-                addItemToOneOfThreeArrayLists(string, plusStrings, minusStrings, normalStrings);
-            showResult(processes(index, plusStrings, minusStrings, normalStrings));
-        }
-        scanner.close();
+
+    public Set<String> getOrder(String input) {
+        String[] inputSplit = splitInput(input);
+        ArrayList<String> plusStrings = new ArrayList<>();
+        ArrayList<String> minusStrings = new ArrayList<>();
+        ArrayList<String> normalStrings = new ArrayList<>();
+        for (String string : inputSplit)
+            addItemToOneOfThreeArrayLists(string, plusStrings, minusStrings, normalStrings);
+        return processes(index, plusStrings, minusStrings, normalStrings);
     }
 
     private String[] splitInput(String input) {
         return input.split("(\\s+)");
     }
 
-    private void showResult(Set<String> answer) {
-        for (String s : answer) System.out.println(s);
-    }
 
     private Set<String> processes(InvertedIndex index, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
         Set<String> answer = index.search(plusStrings);

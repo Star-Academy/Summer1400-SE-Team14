@@ -5,28 +5,30 @@ import java.io.IOException;
 import java.net.URL;
 
 public class PreProcessing {
-    public static void preprocesses() {
+    public static String preprocesses() {
         URL url = Main.class.getResource("../resources/EnglishData");
-        if (url == null) System.out.println("INVALID PATH!");
+        if (url == null) return "INVALID PATH!";
         else {
             File directoryPath = new File(url.getPath());
             File[] filesList = directoryPath.listFiles();
             try {
-                InvertedIndex idx = new InvertedIndex();
-                if (filesList == null) System.out.println("INVALID FILE LIST!");
+                InvertedIndex index = new InvertedIndex();
+                if (filesList == null) return "INVALID FILE LIST!";
                 else {
-                    addFilesToIndexFiles(filesList, idx);
-                    new InputScanner(idx);
+                    addFilesToIndexFiles(filesList, index);
+                    new InputScannerView(index);
+                    return "end";
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            return "an error has happened!";
         }
     }
 
-    private static void addFilesToIndexFiles(File[] filesList, InvertedIndex idx) throws IOException {
+    private static void addFilesToIndexFiles(File[] filesList, InvertedIndex index) throws IOException {
         for (File file : filesList) {
-            idx.indexFile(file);
+            index.indexFile(file);
         }
     }
 }
