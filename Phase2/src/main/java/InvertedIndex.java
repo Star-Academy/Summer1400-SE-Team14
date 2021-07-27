@@ -103,12 +103,14 @@ public class InvertedIndex {
         if (answer.size() > 0 && commonWords != null) {
             answer.retainAll(commonWords);
             return answer;
-        } else if (answer.size() == 0 && commonWords != null) {
+        }
+        if (answer.size() == 0 && commonWords != null) {
             return commonWords;
-        } else if (answer.size() == 0) {
+        }
+        if (answer.size() == 0) {
             return null;
-        } else return answer;
-
+        }
+        return answer;
     }
 
     public Set<String> deleteGivenFiles(Set<String> answer, Set<String> deleteFiles) {
