@@ -32,7 +32,7 @@ public class InvertedIndex {
             "what", "when", "where", "which", "while", "who", "whom", "why",
             "will", "with", "would", "yet", "you", "your");
 
-    Map<String, List<Tuple>> indexedWords = new HashMap<>();
+    Map<String, List<FileInfo>> indexedWords = new HashMap<>();
     List<String> files = new ArrayList<>();
 
     public void indexFile(File file) throws IOException {
@@ -58,8 +58,8 @@ public class InvertedIndex {
             wordsInFiles = convertToLowerCase(wordsInFiles);
             if (stopWords.contains(wordsInFiles))
                 continue;
-            List<Tuple> idx = indexedWords.computeIfAbsent(wordsInFiles, k -> new LinkedList<>());
-            idx.add(new Tuple(fileNumber));
+            List<FileInfo> idx = indexedWords.computeIfAbsent(wordsInFiles, k -> new LinkedList<>());
+            idx.add(new FileInfo(fileNumber));
         }
     }
 
@@ -81,13 +81,13 @@ public class InvertedIndex {
     private void checkCommandMatcher(String word, String key, Set<String> answer) {
         Matcher matcher = Pattern.compile(word).matcher(key);
         if (matcher.find()) {
-            List<Tuple> tupleList = indexedWords.get(key);
-            if (tupleList != null) addFileNumbers(tupleList, answer);
+            List<FileInfo> fileInfoList = indexedWords.get(key);
+            if (fileInfoList != null) addFileNumbers(fileInfoList, answer);
         }
     }
 
-    private void addFileNumbers(List<Tuple> tupleList, Set<String> answer) {
-        for (Tuple t : tupleList) answer.add(files.get(t.fileNumber));
+    private void addFileNumbers(List<FileInfo> fileInfoList, Set<String> answer) {
+        for (FileInfo t : fileInfoList) answer.add(files.get(t.getFileNumber()));
     }
 
     private ArrayList<String> normalizeInputWords(ArrayList<String> wordsToFind) {
@@ -132,12 +132,8 @@ public class InvertedIndex {
         return commonWords;
     }
 
-    private static class Tuple {
-        private final int fileNumber;
 
-        public Tuple(int fileNumber) {
-            this.fileNumber = fileNumber;
-        }
-    }
+
+
 }
  
