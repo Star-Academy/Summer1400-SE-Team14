@@ -6,7 +6,7 @@ import java.net.URL;
 
 public class PreProcessing {
     public static String preprocesses() {
-        URL url = Main.class.getResource("../resources/EnglishData");
+        URL url = PreProcessing.class.getResource("../resources/EnglishData");
         if (url == null) return "INVALID PATH!";
         else {
             File directoryPath = new File(url.getPath());
