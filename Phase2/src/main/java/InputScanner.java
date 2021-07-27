@@ -6,11 +6,11 @@ import java.util.regex.Pattern;
 
 public class InputScanner {
 
-    public InputScanner(InvertedIndex idx) {
-        getOrder(idx);
+    public InputScanner(InvertedIndex index) {
+        getOrder(index);
     }
 
-    public void getOrder(InvertedIndex idx) {
+    public void getOrder(InvertedIndex index) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
@@ -21,7 +21,7 @@ public class InputScanner {
             ArrayList<String> normalStrings = new ArrayList<>();
             for (String string : inputSplit)
                 addItemToOneOfThreeArrayLists(string, plusStrings, minusStrings, normalStrings);
-            showResult(processes(idx, plusStrings, minusStrings, normalStrings));
+            showResult(processes(index, plusStrings, minusStrings, normalStrings));
         }
         scanner.close();
     }
@@ -34,17 +34,17 @@ public class InputScanner {
         for (String s : answer) System.out.println(s);
     }
 
-    private Set<String> processes(InvertedIndex idx, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
-        Set<String> answer = idx.search(plusStrings);
-        Set<String> toDelete = idx.search(minusStrings);
+    private Set<String> processes(InvertedIndex index, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
+        Set<String> answer = index.search(plusStrings);
+        Set<String> toDelete = index.search(minusStrings);
         ArrayList<Set<String>> commons = new ArrayList<>();
         for (String normalString : normalStrings) {
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add(normalString);
-            commons.add(idx.search(arrayList));
+            commons.add(index.search(arrayList));
         }
-        answer = idx.findCommonFiles(answer, commons);
-        answer = idx.deleteGivenFiles(answer, toDelete);
+        answer = index.findCommonFiles(answer, commons);
+        answer = index.deleteGivenFiles(answer, toDelete);
         return answer;
     }
 
