@@ -66,20 +66,24 @@ public class InvertedIndex {
     public Set<String> search(ArrayList<String> wordsToFind) {
         Set<String> answer = new HashSet<>();
         wordsToFind = normalizeInputWords(wordsToFind);
-        for (String word : wordsToFind) {
-            for (String key : indexedWords.keySet()) {
-                Matcher matcher = Pattern.compile(word).matcher(key);
-                if (matcher.find()) {
-                    List<Tuple> tupleList = indexedWords.get(key);
-                    if (tupleList != null) {
-                        for (Tuple t : tupleList) {
-                            answer.add(files.get(t.fileNumber));
-                        }
-                    }
-                }
-            }
-        }
+        for (String word : wordsToFind) findWordInFiles(word, answer);
         return answer;
+    }
+
+    private void findWordInFiles(String word, Set<String> answer) {
+        for (String key : indexedWords.keySet()) checkCommandMatcher(word, key, answer);
+    }
+
+    private void checkCommandMatcher(String word, String key, Set<String> answer) {
+        Matcher matcher = Pattern.compile(word).matcher(key);
+        if (matcher.find()) {
+            List<Tuple> tupleList = indexedWords.get(key);
+            if (tupleList != null) addFileNumbers(tupleList, answer);
+        }
+    }
+
+    private void addFileNumbers(List<Tuple> tupleList, Set<String> answer) {
+        for (Tuple t : tupleList) answer.add(files.get(t.fileNumber));
     }
 
     private ArrayList<String> normalizeInputWords(ArrayList<String> wordsToFind) {
