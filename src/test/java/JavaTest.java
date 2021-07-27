@@ -33,4 +33,9 @@ public class JavaTest {
         pathRoots.add(file.getPath());
         Assertions.assertEquals(invertedIndex.search(wordsToSearch), pathRoots);
     }
+
+    @Test
+    public void preProcessingTest() {
+        Assertions.assertEquals(PreProcessing.preprocesses("/EnglishDaTA"), "INVALID PATH!");
+    }
 }
