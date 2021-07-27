@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 public class PreProcessing {
@@ -13,15 +14,17 @@ public class PreProcessing {
             try {
                 InvertedIndex idx = new InvertedIndex();
                 if (filesList == null) System.out.println("INVALID FILE LIST!");
-                else {
-                    for (File file : filesList) {
-                        idx.indexFile(file);
-                    }
-                    new TakeInput(idx);
-                }
+                else addFilesToIndexFiles(filesList, idx);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private static void addFilesToIndexFiles(File[] filesList, InvertedIndex idx) throws IOException {
+        for (File file : filesList) {
+            idx.indexFile(file);
+        }
+        new TakeInput(idx);
     }
 }
