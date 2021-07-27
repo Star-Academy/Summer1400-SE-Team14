@@ -4,9 +4,9 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TakeInput {
+public class InputScanner {
 
-    public TakeInput(InvertedIndex idx) {
+    public InputScanner(InvertedIndex idx) {
         getOrder(idx);
     }
 

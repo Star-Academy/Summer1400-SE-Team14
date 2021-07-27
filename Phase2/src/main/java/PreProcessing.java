@@ -16,7 +16,7 @@ public class PreProcessing {
                 if (filesList == null) System.out.println("INVALID FILE LIST!");
                 else {
                     addFilesToIndexFiles(filesList, idx);
-                    new TakeInput(idx);
+                    new InputScanner(idx);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
