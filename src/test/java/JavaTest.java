@@ -16,19 +16,19 @@ import java.util.Set;
 
 public class JavaTest {
 
-//    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//    private final PrintStream originalOut = System.out;
-//
-//
-//    @Before
-//    public void setUpStreams() {
-//        System.setOut(new PrintStream(outContent));
-//    }
-//
-//    @After
-//    public void restoreStreams() {
-//        System.setOut(originalOut);
-//    }
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
 
     @Test
     public void test() throws IOException {
@@ -53,18 +53,22 @@ public class JavaTest {
         Assertions.assertEquals(invertedIndex.search(wordsToSearch), pathRoots);
     }
 
-//    @Test
-//    public void preProcessingTest() {
-//        Assertions.assertEquals(PreProcessing.preprocesses("/EnglishDaTA"), "INVALID PATH!");
-//    }
+    @Test
+    public void preProcessingTestValidPath() {
+        Assertions.assertNotEquals("INVALID PATH!", PreProcessing.preprocesses("/EnglishData", ""));
+    }
+
+    @Test
+    public void preProcessingTestInvalidPath() {
+        Assertions.assertEquals("INVALID PATH!", PreProcessing.preprocesses("/EnglishDAta/12", ""));
+    }
 
 //    @Test
 //    public void giveInput() throws IOException {
 //        File file = new File(PreProcessing.class.getResource("/EnglishData/57110").getPath());
 //        InvertedIndex invertedIndex = new InvertedIndex();
 //        invertedIndex.indexFile(file);
-//
-//        InputScannerView inputScannerView = new InputScannerView(invertedIndex, "friend");
+//        new InputScannerView(invertedIndex, "friend");
 //        Assertions.assertEquals(file.getPath(), outContent.toString());
 //    }
 

@@ -3,13 +3,11 @@ import java.io.IOException;
 import java.net.URL;
 
 public class PreProcessing {
-    public static String preprocesses(String path){
-        URL url = null;
-        try {
-            url = PreProcessing.class.getResource(path);
-        } catch (Exception e) {
-            return "INVALID PATH!";
-        }
+    public static String preprocesses(String path, String startString){
+        URL url;
+        url = PreProcessing.class.getResource(path);
+
+        if (url == null) return "INVALID PATH!";
 
         File directoryPath = new File(url.getPath());
         File[] filesList = directoryPath.listFiles();
@@ -18,7 +16,7 @@ public class PreProcessing {
             if (filesList == null) return "INVALID FILE LIST!";
             else {
                 addFilesToIndexFiles(filesList, index);
-                new InputScannerView(index, "");
+                new InputScannerView(index, startString);
                 return "end";
             }
         } catch (Exception e) {

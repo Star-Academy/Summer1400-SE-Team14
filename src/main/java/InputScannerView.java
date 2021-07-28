@@ -5,10 +5,12 @@ public class InputScannerView {
     public InputScannerView(InvertedIndex index, String string) {
         Scanner scanner = new Scanner(System.in);
         InputScanner inputScanner = new InputScanner(index);
-        while (true) {
-            string = scanner.nextLine();
-            if (string.equals("--back")) break;
-            showResult(inputScanner.getOrder(string));
+        if (!string.equals("")) {
+            while (true) {
+                string = scanner.nextLine();
+                if (string.equals("--back")) break;
+                showResult(inputScanner.getOrder(string));
+            }
         }
         scanner.close();
     }
