@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="494aa8b3-fb38-4395-8b95-9c20270b55b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codestar-intern-issues1/Readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codestar-intern-issues1/src/main/java/InvertedIndex.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codestar-intern-issues1/src/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codestar-intern-issues1/src/main/java/TakeInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codestar-intern-issues1/src/main/resources/EnglishData/57110" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codestar-intern-issues1/src/main/resources/EnglishData/58043" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Phase-5.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Phase-5.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp3.1/ConsoleApp1.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp3.1/ConsoleApp1.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase-5.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-5.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,13 +41,14 @@
       <option name="presentableId" value="Default" />
       <updated>1627990827985</updated>
       <workItem from="1627990834419" duration="259000" />
+      <workItem from="1627991127835" duration="680000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -62,6 +60,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
