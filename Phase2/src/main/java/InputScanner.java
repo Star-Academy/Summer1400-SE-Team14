@@ -36,9 +36,9 @@ public class InputScanner {
             arrayList.add(normalString);
             commons.add(index.search(arrayList));
         }
-        answer = index.findCommonFiles(answer, commons);
-        answer = index.deleteGivenFiles(answer, toDelete);
-        return answer;
+        Set<String> answerFoundCommon = index.findCommonFiles(answer, commons);
+        Set<String> answerDeletedFiles = index.deleteGivenFiles(answerFoundCommon, toDelete);
+        return answerDeletedFiles;
     }
 
     private void addItemToOneOfThreeArrayLists(String string, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
