@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class InvertedIndex {
-    List<String> stopWords = Arrays.asList("a", "able", "about",
+   static final List<String> stopWords = Arrays.asList("a", "able", "about",
             "across", "after", "all", "almost", "also", "am", "among", "an",
             "and", "any", "are", "as", "at", "be", "because", "been", "but",
             "by", "can", "cannot", "could", "dear", "did", "do", "does",
