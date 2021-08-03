@@ -6,7 +6,7 @@ namespace Phase_4
     {
         public static void Main(string[] args)
         {
-           // Console.Write("salam");
+           Console.Write("salam");
             new ReadFiles();
         }
     }

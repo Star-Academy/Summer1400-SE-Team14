@@ -19,14 +19,17 @@ namespace Phase_4
 
         public void ProcessFiles()
         {
-            string fileName = "C:\\Users\\ASUS\\RiderProjects\\Phase-4\\Phase-4\\Students.json";
+            // string fileName = "C:\\Users\\ASUS\\RiderProjects\\Phase-4\\Phase-4\\Students.json";
+            string fileName = "C:\\Users\\mjmah\\OneDrive\\Desktop\\new\\Phase-4\\Students.json";
             string jsonString = File.ReadAllText(fileName);
             List<Student> students = JsonSerializer.Deserialize<List<Student>>(jsonString);
 
 
-            fileName = "C:\\Users\\ASUS\\RiderProjects\\Phase-4\\Phase-4\\lessons.json";
+            fileName = "C:\\Users\\mjmah\\OneDrive\\Desktop\\new\\Phase-4\\lessons.json";
             jsonString = File.ReadAllText(fileName);
-            List<LessonClass> weatherForecast = JsonSerializer.Deserialize<List<LessonClass>>(jsonString);
+            List<LessonClass> allLessons = JsonSerializer.Deserialize<List<LessonClass>>(jsonString);
+            new Proccess(students, allLessons);
+            
         }
     }
 }
