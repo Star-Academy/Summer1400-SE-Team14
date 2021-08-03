@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class InvertedIndex {
     List<String> stopWords = Arrays.asList("a", "able", "about",
             "across", "after", "all", "almost", "also", "am", "among", "an",
@@ -74,7 +75,9 @@ public class InvertedIndex {
     }
 
     private void findWordInFiles(String word, Set<String> answer) {
-        for (String key : indexedWords.keySet()) checkCommandMatcher(word, key, answer);
+        for (String key : indexedWords.keySet()) {
+            checkCommandMatcher(word, key, answer);
+        }
     }
 
     private void checkCommandMatcher(String word, String key, Set<String> answer) {
@@ -118,7 +121,7 @@ public class InvertedIndex {
     }
 
     public Set<String> findCommonWords(ArrayList<Set<String>> wordsToFindCommon) {
-        if (wordsToFindCommon.size() <= 0){
+        if (wordsToFindCommon.size() <= 0) {
             return new HashSet<>();
         }
         Set<String> commonWords = wordsToFindCommon.get(0);
@@ -130,8 +133,6 @@ public class InvertedIndex {
         }
         return commonWords;
     }
-
-
 
 
 }
