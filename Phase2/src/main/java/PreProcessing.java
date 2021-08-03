@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.net.URL;
 
 public class PreProcessing {
+    final static String invalidPathString = "INVALID PATH!";
+
     public static String preprocesses() {
         URL url = PreProcessing.class.getResource("../resources/EnglishData");
-        if (url == null) return "INVALID PATH!";
+        if (url == null) return invalidPathString;
         else {
             File directoryPath = new File(url.getPath());
             File[] filesList = directoryPath.listFiles();
