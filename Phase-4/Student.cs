@@ -17,6 +17,9 @@ namespace Phase_4
         //     Average = 0;
         //     StudentNumber = student.StudentNumber;
         // }
+        public Student()
+        {
+        }
 
         public Student(int studentNumber, string firstName, string lastName)
         {

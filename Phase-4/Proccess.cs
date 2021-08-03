@@ -7,16 +7,11 @@ namespace Phase_4
     {
         public Proccess(List<Student> students, List<LessonClass> allLessons)
         {
-            foreach (var student in students)
-            {
-                int studentNumber = student.StudentNumber;
-                string firstName = student.FirstName;
-                string lastName = student.LastName;
-                
-                new Student(studentNumber, firstName, lastName);
-            }
+           
+            Student.AllStudents = students; 
             foreach (var lessonClass in allLessons)
             {
+                
                 int studentNumber = lessonClass.StudentNumber;
                 Student student = Student.GetStudentWithStudentNumber(studentNumber);
                 student.AddLessonToAllLessons(lessonClass);
@@ -25,7 +20,7 @@ namespace Phase_4
 
             foreach (var student in students)
             {
-                Console.Write(student.Average);
+                Console.WriteLine(student.Average);
             }
         }
     }
