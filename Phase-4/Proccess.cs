@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Phase_4
 {
@@ -18,9 +20,18 @@ namespace Phase_4
 
             }
 
-            foreach (var student in students)
+            
+            var orderedStudentsByAverage = Student.AllStudents.OrderByDescending(s => s.Average);
+
+            int i = 0;
+            foreach (var student in orderedStudentsByAverage)
             {
+                if (i > 2)
+                {
+                    break;
+                }
                 Console.WriteLine(student.Average);
+                i++;
             }
         }
     }

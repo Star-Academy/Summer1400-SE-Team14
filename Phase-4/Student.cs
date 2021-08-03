@@ -53,7 +53,6 @@ namespace Phase_4
         private void CalculateNewAverage()
         {
             double sumOfScores = allLessons.Sum(lessonClass => lessonClass.Score);
-
             Average = sumOfScores / allLessons.Count;
         }
     }
