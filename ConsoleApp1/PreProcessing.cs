@@ -1,33 +1,48 @@
-﻿namespace ConsoleApp1
-{
- 
-    public class PreProcessing {
-        final static String invalidPathString = "INVALID PATH!";
+﻿using System.IO;
 
-        public static String preprocesses() {
+namespace ConsoleApp1
+{
+
+    public class PreProcessing
+    {
+        static string invalidPathString = "INVALID PATH!";
+
+        public static string preprocesses()
+        {
+            //TODO?
             URL url = PreProcessing.class.getResource("../resources/EnglishData");
             if (url == null) return invalidPathString;
-            else {
+            else
+            {
                 File directoryPath = new File(url.getPath());
                 File[] filesList = directoryPath.listFiles();
-                try {
+                try
+                {
                     InvertedIndex index = new InvertedIndex();
                     if (filesList == null) return "INVALID FILE LIST!";
-                    else {
+                    else
+                    {
                         addFilesToIndexFiles(filesList, index);
                         new InputScannerView(index);
                         return "end";
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     return "an error has happened!";
                 }
             }
         }
 
-        private static void addFilesToIndexFiles(File[] filesList, InvertedIndex index) throws IOException {
-            for (File file : filesList) {
-            index.indexFile(file);
+        private static void addFilesToIndexFiles(File[] filesList, InvertedIndex index) throws IOException
+        {
+            // for (File file : filesList) {
+            //     index.indexFile(file);
+            // }
+            get { throw new System.NotImplementedException(); }
+            set { throw new System.NotImplementedException(); }
         }
     }
+
 }
-}
+
