@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
@@ -12,9 +13,9 @@ namespace ConsoleApp1
         }
 
 
-        public HashSet<string> getOrder(string input)
+        public HashSet<string> GetOrder(string input)
         {
-            string[] inputSplit = splitInput(input);
+            IEnumerable<string> inputSplit = SplitInput(input);
             List<string> plusStrings = new List<string>();
             List<string> minusStrings = new List<string>();
             List<string> normalStrings = new List<string>();
@@ -26,9 +27,9 @@ namespace ConsoleApp1
             return processes(index, plusStrings, minusStrings, normalStrings);
         }
     
-        private string[] splitInput(string input)
+        private static IEnumerable<string> SplitInput(string input)
         {
-            return input.split("(\\s+)");
+            return input.Split("(\\s+)");
         }
     
     
@@ -53,19 +54,35 @@ namespace ConsoleApp1
         private void addItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
-            Pattern pattern = Pattern.compile("^\\+(.+)$");
-            Matcher matcher = pattern.matcher(iString);
-            Pattern pattern1 = Pattern.compile("^-(.+)$");
-            Matcher matcher1 = pattern1.matcher(iString);
-            if (matcher.find())
+            
+            // Pattern pattern = Pattern.compile("^\\+(.+)$");
+            // Matcher matcher = pattern.matcher(iString);
+            // Pattern pattern1 = Pattern.compile("^-(.+)$");
+            // Matcher matcher1 = pattern1.matcher(iString);
+            // if (matcher.find())
+            // {
+            //     string a = matcher.group(1);
+            //     plusStrings.Add(a);
+            // }
+            // else if (matcher1.find())
+            // {
+            //     string a = matcher1.group(1);
+            //     minusStrings.Add(a);
+            // }
+            // else normalStrings.Add(iString);
+            Regex pattern = new Regex("^\\+(.+)$");
+            MatchCollection matcher = pattern.Matches(iString);
+            Regex patternTwo = new Regex("^-(.+)$");
+            MatchCollection matcherTwo = patternTwo.Matches(iString);
+            if (matcher.Count > 0) 
             {
-                string a = matcher.group(1);
-                plusStrings.Add(a);
+                var toAdd = matcher[0].Value;
+                plusStrings.Add(toAdd);
             }
-            else if (matcher1.find())
+            else if (matcherTwo.Count> 0)
             {
-                string a = matcher1.group(1);
-                minusStrings.Add(a);
+                var toAdd = matcherTwo[0].Value;
+                minusStrings.Add(toAdd);
             }
             else normalStrings.Add(iString);
         }
