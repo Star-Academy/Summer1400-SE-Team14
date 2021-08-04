@@ -89,6 +89,26 @@ namespace ConsoleApp1
             return answer;
         }
 
+        private void FindWordInFiles(string word, HashSet<string> answer) {
+            foreach (string key in indexedWords.Keys) {
+                CheckCommandMatcher(word, key, answer);
+            }
+        }
+        
+        private void CheckCommandMatcher(string word, string key, HashSet<string> answer) {
+            Matcher matcher = Pattern.compile(word).matcher(key);
+            if (matcher.find()) {
+                List<FileInfo> fileInfoList = indexedWords[key];
+                if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
+            }
+        }
+        
+        
+        private void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer) {
+            foreach (FileInfo t in fileInfoList) answer.Add(files[t.GetFileNumber()]);
+        }
+
+        
         private List<string> NormalizeInputWords(List<string> wordsToFind)
         {
             List<string> returnArrayList = new List<string>();
@@ -105,11 +125,11 @@ namespace ConsoleApp1
             return wordsInFiles.ToLower();
         }
 
-        private void findWordInFiles(string word, HashSet<string> answer)
+        private void FindWordInFiles(string word, HashSet<string> answer)
         {
-            foreach (string key in indexedWords.keySet())
+            foreach (string key in indexedWords.Keys)
             {
-                checkCommandMatcher(word, key, answer);
+                CheckCommandMatcher(word, key, answer);
             }
         }
     }
