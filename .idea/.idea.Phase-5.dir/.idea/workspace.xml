@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="494aa8b3-fb38-4395-8b95-9c20270b55b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ConsoleApp1/InputScanner.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Phase-5.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Phase-5.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Phase-5.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp1/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp3.1/ConsoleApp1.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/obj/Debug/netcoreapp3.1/ConsoleApp1.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Phase-5.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Phase-5.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ConsoleApp1/IInvertedIndex.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConsoleApp1/IInvertedIndex.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestProject1/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestProject1/UnitTest1.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
