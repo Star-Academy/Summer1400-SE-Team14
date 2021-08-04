@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace ConsoleApp1
 {
@@ -7,31 +8,33 @@ namespace ConsoleApp1
     {
         static string invalidPathString = "INVALID PATH!";
 
-        public static string preprocesses()
+        public static string Preprocesses()
         {
             //TODO?
-            URL url = PreProcessing.class.getResource("../resources/EnglishData");
-            if (url == null) return invalidPathString;
-            else
+            // URL url = PreProcessing.class.getResource("../resources/EnglishData");
+            // if (url == null) return invalidPathString;
+            
+            // File directoryPath = new File(url.getPath());
+            // File[] filesList = directoryPath.listFiles();
+            //Get all file names
+            string[] files = Directory.GetFiles(@"C:\File", "*.txt");
+            
+            try
             {
-                File directoryPath = new File(url.getPath());
-                File[] filesList = directoryPath.listFiles();
-                try
-                {
-                    InvertedIndex index = new InvertedIndex();
-                    if (filesList == null) return "INVALID FILE LIST!";
-                    else
-                    {
-                        addFilesToIndexFiles(filesList, index);
-                        new InputScannerView(index);
-                        return "end";
-                    }
-                }
-                catch (Exception e)
-                {
-                    return "an error has happened!";
-                }
+                InvertedIndex index = new InvertedIndex();
+                // if (filesList == null) return "INVALID FILE LIST!";
+                // else
+                // {
+                    addFilesToIndexFiles(filesList, index);
+                    new InputScannerView(index);
+                    return "end";
+                // }
             }
+            catch (Exception e)
+            {
+                return "an error has happened!";
+            }
+            
         }
 
         private static void addFilesToIndexFiles(File[] filesList, InvertedIndex index) throws IOException

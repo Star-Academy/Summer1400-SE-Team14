@@ -6,27 +6,27 @@ namespace ConsoleApp1
 
     public class InputScannerView
     {
-        string backString = "--back";
+        private const string BackString = "--back";
 
         public InputScannerView(InvertedIndex index)
         {
             // Scanner scanner = new Scanner(System.in);
             
-            InputScanner inputScanner = new InputScanner(index);
+            var inputScanner = new InputScanner(index);
             while (true)
             {
                 // string input = scanner.nextLine();
-                string input = Console.ReadLine();
+                var input = Console.ReadLine();
                 // if (input.equals(backString)) break;
-                if (string.Equals(input, backString)) break;
-                showResult(inputScanner.GetOrder(input));
+                if (string.Equals(input, BackString)) break;
+                ShowResult(inputScanner.GetOrder(input));
             }
 
             // scanner.close();
 
         }
 
-        private void showResult(HashSet<string> answer)
+        private static void ShowResult(IEnumerable<string> answer)
         {
             foreach (var s in answer)
             {
