@@ -1,4 +1,4 @@
 # Summer1400-SE-Team14
 
-# Parsa Sharifi
+* Parsa Sharifi
 * Mohammad Javad Maheronnaghsh
