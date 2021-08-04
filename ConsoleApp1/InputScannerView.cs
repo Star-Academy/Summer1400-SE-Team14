@@ -10,20 +10,23 @@ namespace ConsoleApp1
 
         public InputScannerView(InvertedIndex index)
         {
-            Scanner scanner = new Scanner(System.in);
+            // Scanner scanner = new Scanner(System.in);
+            
             InputScanner inputScanner = new InputScanner(index);
             while (true)
             {
-                string input = scanner.nextLine();
-                if (input.equals(backString)) break;
-                showResult(inputScanner.getOrder(input));
+                // string input = scanner.nextLine();
+                string input = Console.ReadLine();
+                // if (input.equals(backString)) break;
+                if (string.Equals(input, backString)) break;
+                showResult(inputScanner.GetOrder(input));
             }
 
-            scanner.close();
+            // scanner.close();
 
         }
 
-        private void showResult(List<string> answer)
+        private void showResult(HashSet<string> answer)
         {
             foreach (var s in answer)
             {
