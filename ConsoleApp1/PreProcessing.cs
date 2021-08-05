@@ -10,22 +10,17 @@ namespace ConsoleApp1
 
         public static string Preprocesses()
         {
-            //TODO?
-            // URL url = PreProcessing.class.getResource("../resources/EnglishData");
-            // if (url == null) return invalidPathString;
-            
-            // File directoryPath = new File(url.getPath());
-            // File[] filesList = directoryPath.listFiles();
-            //Get all file names
-            string[] files = Directory.GetFiles(@"C:\File", "*.txt");
+
+            //TODO
+            string[] files = Directory.GetFiles(@"C:\\Users\\ASUS\\RiderProjects\\Phase-5\\EnglishData\\", "*.txt");
             
             try
             {
-                InvertedIndex index = new InvertedIndex();
+                IInvertedIndex index = new InvertedIndex();
                 // if (filesList == null) return "INVALID FILE LIST!";
                 // else
                 // {
-                    addFilesToIndexFiles(filesList, index);
+                    addFilesToIndexFiles(files, index);
                     new InputScannerView(index);
                     return "end";
                 // }
@@ -37,13 +32,9 @@ namespace ConsoleApp1
             
         }
 
-        private static void addFilesToIndexFiles(File[] filesList, InvertedIndex index) throws IOException
+        private static void addFilesToIndexFiles(string[] filesList, IInvertedIndex index)
         {
-            // for (File file : filesList) {
-            //     index.indexFile(file);
-            // }
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+            index.IndexFile(filesList);
         }
     }
 

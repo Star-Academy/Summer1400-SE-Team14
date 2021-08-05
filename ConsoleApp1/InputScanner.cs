@@ -5,9 +5,9 @@ namespace ConsoleApp1
 {
     public class InputScanner
     {
-        private InvertedIndex index;
+        private IInvertedIndex index;
 
-        public InputScanner(InvertedIndex index)
+        public InputScanner(IInvertedIndex index)
         {
             this.index = index;
         }
@@ -36,14 +36,14 @@ namespace ConsoleApp1
         private HashSet<string> processes(IInvertedIndex index, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
-            HashSet<string> answer = index.search(plusStrings);
-            HashSet<string> toDelete = index.search(minusStrings);
+            HashSet<string> answer = index.Search(plusStrings);
+            HashSet<string> toDelete = index.Search(minusStrings);
             List<HashSet<string>> commons = new List<HashSet<string>>();
             foreach (var normalString in normalStrings)
             {
                 List<string> arrayList = new List<string>();
                 arrayList.Add(normalString);
-                commons.Add(index.search(arrayList));
+                commons.Add(index.Search(arrayList));
             }
     
             answer = index.FindCommonFiles(answer, commons);

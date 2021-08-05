@@ -133,10 +133,10 @@ namespace ConsoleApp1
         }
 
 
-        public void IndexFile(string fileDirectory)
+        public void IndexFile(string[] filePaths)
         {
             
-            string[] filePaths = Directory.GetFiles(@fileDirectory);
+            // string[] filePaths = Directory.GetFiles(@fileDirectory);
            // Console.WriteLine(filePaths);
             int fileNumber = 0;
             foreach (var filePath in filePaths)

@@ -26,7 +26,7 @@ namespace ConsoleApp1
         public string ConvertToLowerCase(string wordsInFiles);
 
 
-        public void IndexFile(string fileDirectory);
+        public void IndexFile(string[] fileDirectory);
 
         public void ConvertFileToTokens(int fileNumber, string filePath);
 
