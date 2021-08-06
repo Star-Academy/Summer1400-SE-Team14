@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using Xunit;
 using ConsoleApp1;
+using NSubstitute;
 
 namespace TestProject1
 {
     public class UnitTest1
     {
-           [Fact]
+        [Fact]
         public void TestDeleteGivenFiles()
         {
             IInvertedIndex invertedIndex = new InvertedIndex();
@@ -60,32 +61,9 @@ namespace TestProject1
             Assert.Equal(answer, invertedIndex.FindCommonFiles(answer, new List<HashSet<string>>()));
         }
 
-
         [Fact]
-        public void test()
+        public void checkDeleteGivenFiles()
         {
-            IInvertedIndex invertedIndex = new InvertedIndex();
-            invertedIndex.IndexFile("C:\\Users\\ASUS\\RiderProjects\\Phase-5\\EnglishData\\");
-            List<string> filesTest = new List<string>();
-            filesTest.Add(@"C:\Users\ASUS\RiderProjects\Phase-5\EnglishData\57110");
-            Assert.Equal(filesTest, invertedIndex.GetFiles());
-        }
-
-        [Fact]
-        public void searchTest()
-        {
-            InvertedIndex invertedIndex = new InvertedIndex();
-            invertedIndex.IndexFile("C:\\Users\\ASUS\\RiderProjects\\Phase-5\\EnglishData\\");
-
-            List<string> wordsToSearch = new List<string>();
-            wordsToSearch.Add("friend");
-            HashSet<string> pathRoots = new HashSet<string>();
-            pathRoots.Add(@"C:\Users\ASUS\RiderProjects\Phase-5\EnglishData\57110");
-            Assert.Equal(invertedIndex.Search(wordsToSearch), pathRoots);
-        }
-
-        [Fact]
-        public void checkDeleteGivenFiles() {
             InvertedIndex invertedIndex = new InvertedIndex();
             HashSet<string> set = new HashSet<string>();
             set.Add("asd");
@@ -96,7 +74,22 @@ namespace TestProject1
             set3.Add("qwe");
             Assert.Equal(set3, invertedIndex.DeleteGivenFiles(set, set2));
         }
-        
-        
+
+        [Fact]
+        public void InputScannerTest()
+        {
+            IInvertedIndex invertedIndex = Substitute.For<IInvertedIndex>();
+            List<string> list = new List<string>();
+            list.Add("friend");
+            HashSet<string> answer = new HashSet<string>();
+            answer.Add("C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\TestProject1\\57110");
+            invertedIndex.Search(list).Returns(answer);
+            List<string> list2 = new List<string>();
+            list2.Add("boy");
+            invertedIndex.Search(list2).Returns(new HashSet<string>());
+            InputScanner inputScanner = new InputScanner(invertedIndex);
+
+            Assert.Equal(null, inputScanner.GetOrder("+friend"));
+        }
     }
 }
