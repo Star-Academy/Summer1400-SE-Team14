@@ -35,6 +35,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[4.2.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
