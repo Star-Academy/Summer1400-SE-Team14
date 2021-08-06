@@ -9,14 +9,11 @@ namespace ConsoleApp1
 
         public InputScannerView(IInvertedIndex index)
         {
-            // Scanner scanner = new Scanner(System.in);
 
             var inputScanner = new InputScanner(index);
             while (true)
             {
-                // string input = scanner.nextLine();
                 var input = Console.ReadLine();
-                // if (input.equals(backString)) break;
                 if (string.Equals(input, BackString)) break;
                 ShowResult(inputScanner.GetOrder(input));
             }

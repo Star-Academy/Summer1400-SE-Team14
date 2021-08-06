@@ -54,21 +54,6 @@ namespace ConsoleApp1
         private void addItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
-            // Pattern pattern = Pattern.compile("^\\+(.+)$");
-            // Matcher matcher = pattern.matcher(iString);
-            // Pattern pattern1 = Pattern.compile("^-(.+)$");
-            // Matcher matcher1 = pattern1.matcher(iString);
-            // if (matcher.find())
-            // {
-            //     string a = matcher.group(1);
-            //     plusStrings.Add(a);
-            // }
-            // else if (matcher1.find())
-            // {
-            //     string a = matcher1.group(1);
-            //     minusStrings.Add(a);
-            // }
-            // else normalStrings.Add(iString);
             Regex pattern = new Regex("^\\+(.+)$");
             MatchCollection matcher = pattern.Matches(iString);
             Regex patternTwo = new Regex("^-(.+)$");
