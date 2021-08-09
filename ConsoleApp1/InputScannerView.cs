@@ -7,7 +7,7 @@ namespace ConsoleApp1
     {
         private const string BackString = "--back";
 
-        public InputScannerView(IInvertedIndex index)
+        public InputScannerView(InvertedIndex index)
         {
 
             var inputScanner = new InputScanner(index);

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
-    public class InvertedIndex : IInvertedIndex
+    public class InvertedIndex 
     {
         static List<string> stopWords = new List<string>
         {
@@ -27,8 +28,10 @@ namespace ConsoleApp1
         };
 
         //static Dictionary<string, List<FileInfo>> indexedWords = new Dictionary<string, List<FileInfo>>();
-        public static List<Word> indexedWords = new List<Word>();
-        static List<string> files = new List<string>();
+        private static List<Word> indexedWords = new List<Word>();
+
+        private IInvertedIndex _invertedIndexImplementation;
+        // static List<string> files = new List<string>();
 
 
         public HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles)
@@ -106,15 +109,16 @@ namespace ConsoleApp1
             Match matcher = rg.Match(key);
             if (matcher.Success)
             {
-                List<FileInfo> fileInfoList = indexedWords[andis].FilesContainWord;
+             //   List<FileInfo> fileInfoList = indexedWords[andis].FilesContainWord;
+                List<string> fileInfoList = indexedWords[andis].FilesContainWord;
                 if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
             }
         }
 
 
-        public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer)
+        public void AddFileNumbers(List<string> fileInfoList, HashSet<string> answer)
         {
-            foreach (FileInfo t in fileInfoList) answer.Add(files[t.GetFileNumber() - 1]);
+            foreach (string t in fileInfoList) answer.Add(t);
         }
 
 
@@ -138,25 +142,26 @@ namespace ConsoleApp1
         public void IndexFile(string[] filePaths)
         {
             // string[] filePaths = Directory.GetFiles(@fileDirectory);
-            // Console.WriteLine(filePaths);
+             Console.WriteLine("**");
             int fileNumber = 0;
             foreach (var filePath in filePaths)
             {
-                files.Add(filePath);
-                fileNumber++;
+               // files.Add(filePath);
+              //  fileNumber++;
                 //   Console.WriteLine(filePath);
                 ConvertFileToTokens(fileNumber, filePath);
             }
-            // using (var context = new Context())
-            // {
-            //     context.Database.EnsureCreated();
-            //     foreach (var indexedWord in indexedWords)
-            //     {
-            //         context.SaveWords.Add(indexedWord);
-            //         context.SaveChanges();
-            //     }
-            //
-            // }
+            Console.WriteLine("*#");
+
+            using (var context = new Context())
+            {
+                foreach (var indexedWord in indexedWords)
+                {
+                    context.SaveWords.Add(indexedWord);
+                }
+
+                context.SaveChanges();
+            }
         }
 
         public void ConvertFileToTokens(int fileNumber, string filePath)
@@ -171,7 +176,7 @@ namespace ConsoleApp1
 
             while (str != null)
             {
-                ImportWordsInList(str, fileNumber);
+                ImportWordsInList(str, fileNumber , filePath);
                 //     Console.WriteLine(str);
                 str = sr.ReadLine();
             }
@@ -179,7 +184,7 @@ namespace ConsoleApp1
             sr.Close();
         }
 
-        public void ImportWordsInList(string line, int fileNumber)
+        public void ImportWordsInList(string line, int fileNumber , string filePath)
         {
             foreach (string wordsInFiles in line.Split("\\W+"))
             {
@@ -192,15 +197,15 @@ namespace ConsoleApp1
                     if (indexedWord.NameOfWord.Equals(wordsInFilesInLower))
                     {
                         flag = 1;
-                        List<FileInfo> filesList = indexedWord.FilesContainWord;
-                        filesList.Add(new FileInfo(fileNumber));
+                        List<string> filesList = indexedWord.FilesContainWord;
+                        filesList.Add(filePath);
                     }
                 }
 
                 if (flag == 0)
                 {
-                    List<FileInfo> filesList = new List<FileInfo>();
-                    filesList.Add(new FileInfo(fileNumber));
+                    List<string> filesList = new List<string>();
+                    filesList.Add(filePath);
                     Word word = new Word(wordsInFilesInLower);
                     word.FilesContainWord = filesList;
                     indexedWords.Add(word);
@@ -208,9 +213,9 @@ namespace ConsoleApp1
             }
         }
 
-        public List<string> GetFiles()
-        {
-            return files;
-        }
+        // public List<string> GetFiles()
+        // {
+        //     return files;
+        // }
     }
 }

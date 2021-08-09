@@ -15,7 +15,7 @@ namespace ConsoleApp1
             {
                 Console.WriteLine("2!!");
 
-                IInvertedIndex index = new InvertedIndex();
+                InvertedIndex index = new InvertedIndex();
                 Console.WriteLine("3!!");
 
                 addFilesToIndexFiles(files, index);
@@ -34,7 +34,7 @@ namespace ConsoleApp1
             }
         }
 
-        private static void addFilesToIndexFiles(string[] filesList, IInvertedIndex index)
+        private static void addFilesToIndexFiles(string[] filesList, InvertedIndex index)
         {
             index.IndexFile(filesList);
         }

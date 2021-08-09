@@ -5,9 +5,9 @@ namespace ConsoleApp1
 {
     public class InputScanner
     {
-        private IInvertedIndex index;
+        private InvertedIndex index;
 
-        public InputScanner(IInvertedIndex index)
+        public InputScanner(InvertedIndex index)
         {
             this.index = index;
         }
@@ -33,7 +33,7 @@ namespace ConsoleApp1
         }
 
 
-        private HashSet<string> processes(IInvertedIndex index, List<string> plusStrings, List<string> minusStrings,
+        private HashSet<string> processes(InvertedIndex index, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
             HashSet<string> answer = index.Search(plusStrings);
