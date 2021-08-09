@@ -9,8 +9,7 @@ namespace ConsoleApp1
 
         public static string Preprocesses()
         {
-            string[] files = Directory.GetFiles(@"C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\
-            TestProject1\\57110", "*.txt");
+            string[] files = Directory.GetFiles(@"C:\Users\mjmah\OneDrive\Desktop\Summer1400-SE-Team14999\TestProject1\");
 
             try
             {
