@@ -15,9 +15,8 @@ namespace ConsoleApp1
         public HashSet<string> Search(List<string> wordsToFind);
 
         public void FindWordInFiles(string word, HashSet<string> answer);
-        public void CheckCommandMatcher(string word, string key, HashSet<string> answer);
 
-
+        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int andis);
         public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
 
 

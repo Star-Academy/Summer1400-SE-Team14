@@ -26,7 +26,8 @@ namespace ConsoleApp1
             "will", "with", "would", "yet", "you", "your"
         };
 
-        static Dictionary<string, List<FileInfo>> indexedWords = new Dictionary<string, List<FileInfo>>();
+        //static Dictionary<string, List<FileInfo>> indexedWords = new Dictionary<string, List<FileInfo>>();
+        public static List<Word> indexedWords = new List<Word>();
         static List<string> files = new List<string>();
 
 
@@ -92,19 +93,20 @@ namespace ConsoleApp1
 
         public void FindWordInFiles(string word, HashSet<string> answer)
         {
-            foreach (string key in indexedWords.Keys)
+            foreach (Word keyWord in indexedWords)
             {
-                CheckCommandMatcher(word, key, answer);
+                int andis = indexedWords.FindIndex(a => a.NameOfWord.Equals(keyWord.NameOfWord));
+                CheckCommandMatcher(word, keyWord.NameOfWord, answer, andis);
             }
         }
 
-        public void CheckCommandMatcher(string word, string key, HashSet<string> answer)
+        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int andis)
         {
             Regex rg = new Regex(word);
             Match matcher = rg.Match(key);
             if (matcher.Success)
             {
-                List<FileInfo> fileInfoList = indexedWords[key];
+                List<FileInfo> fileInfoList = indexedWords[andis].FilesContainWord;
                 if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
             }
         }
@@ -145,6 +147,16 @@ namespace ConsoleApp1
                 //   Console.WriteLine(filePath);
                 ConvertFileToTokens(fileNumber, filePath);
             }
+            // using (var context = new Context())
+            // {
+            //     context.Database.EnsureCreated();
+            //     foreach (var indexedWord in indexedWords)
+            //     {
+            //         context.SaveWords.Add(indexedWord);
+            //         context.SaveChanges();
+            //     }
+            //
+            // }
         }
 
         public void ConvertFileToTokens(int fileNumber, string filePath)
@@ -174,17 +186,24 @@ namespace ConsoleApp1
                 string wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
                 if (stopWords.Contains(wordsInFilesInLower))
                     continue;
-                if (indexedWords.ContainsKey(wordsInFilesInLower))
+                int flag = 0;
+                foreach (var indexedWord in indexedWords)
                 {
-                    List<FileInfo> filesList = indexedWords[wordsInFilesInLower];
-                    filesList.Add(new FileInfo(fileNumber));
+                    if (indexedWord.NameOfWord.Equals(wordsInFilesInLower))
+                    {
+                        flag = 1;
+                        List<FileInfo> filesList = indexedWord.FilesContainWord;
+                        filesList.Add(new FileInfo(fileNumber));
+                    }
                 }
 
-                if (!indexedWords.ContainsKey(wordsInFilesInLower))
+                if (flag == 0)
                 {
                     List<FileInfo> filesList = new List<FileInfo>();
                     filesList.Add(new FileInfo(fileNumber));
-                    indexedWords.Add(wordsInFilesInLower, filesList);
+                    Word word = new Word(wordsInFilesInLower);
+                    word.FilesContainWord = filesList;
+                    indexedWords.Add(word);
                 }
             }
         }

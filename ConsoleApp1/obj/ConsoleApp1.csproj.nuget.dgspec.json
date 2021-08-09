@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\ASUS\\RiderProjects\\newPhase-5Clone\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\ASUS\\RiderProjects\\newPhase-5Clone\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\RiderProjects\\newPhase-5Clone\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\ConsoleApp1\\ConsoleApp1.csproj",
-        "packagesPath": "C:\\Users\\mjmah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\ConsoleApp1\\obj\\",
+        "projectPath": "C:\\Users\\ASUS\\RiderProjects\\newPhase-5Clone\\ConsoleApp1\\ConsoleApp1.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\RiderProjects\\newPhase-5Clone\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mjmah\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -36,6 +36,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.8, )"
+            },
             "NSubstitute": {
               "target": "Package",
               "version": "[4.2.2, )"
