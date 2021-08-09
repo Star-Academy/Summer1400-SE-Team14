@@ -110,15 +110,15 @@ namespace ConsoleApp1
             if (matcher.Success)
             {
              //   List<FileInfo> fileInfoList = indexedWords[andis].FilesContainWord;
-                List<string> fileInfoList = indexedWords[andis].FilesContainWord;
+                List<FilePath> fileInfoList = indexedWords[andis].FilesContainWord;
                 if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
             }
         }
 
 
-        public void AddFileNumbers(List<string> fileInfoList, HashSet<string> answer)
+        public void AddFileNumbers(List<FilePath> fileInfoList, HashSet<string> answer)
         {
-            foreach (string t in fileInfoList) answer.Add(t);
+            foreach (FilePath t in fileInfoList) answer.Add(t.filePath);
         }
 
 
@@ -149,6 +149,7 @@ namespace ConsoleApp1
                // files.Add(filePath);
               //  fileNumber++;
                 //   Console.WriteLine(filePath);
+                Console.WriteLine(filePath);
                 ConvertFileToTokens(fileNumber, filePath);
             }
             Console.WriteLine("*#");
@@ -166,19 +167,23 @@ namespace ConsoleApp1
 
         public void ConvertFileToTokens(int fileNumber, string filePath)
         {
+            Console.WriteLine("qq1");
             StreamReader sr = new StreamReader(filePath);
-
+            Console.WriteLine("qq2");
             //    Console.WriteLine("Content of the File");
 
             sr.BaseStream.Seek(0, SeekOrigin.Begin);
-
+            Console.WriteLine("qq3");
             string str = sr.ReadLine();
-
+            Console.WriteLine("qq4");
             while (str != null)
             {
+                Console.WriteLine("qq5");
                 ImportWordsInList(str, fileNumber , filePath);
+                Console.WriteLine("qq6");
                 //     Console.WriteLine(str);
                 str = sr.ReadLine();
+                Console.WriteLine("qq7");
             }
 
             sr.Close();
@@ -188,27 +193,41 @@ namespace ConsoleApp1
         {
             foreach (string wordsInFiles in line.Split("\\W+"))
             {
+                Console.WriteLine("ww1");
                 string wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
+                Console.WriteLine("ww2");
                 if (stopWords.Contains(wordsInFilesInLower))
                     continue;
                 int flag = 0;
                 foreach (var indexedWord in indexedWords)
                 {
-                    if (indexedWord.NameOfWord.Equals(wordsInFilesInLower))
+                    Console.WriteLine("ww3");
+                    if (indexedWord.NameOfWord.Equals(wordsInFilesInLower) && !FilePath.AllFilePaths.Contains(filePath))
                     {
                         flag = 1;
-                        List<string> filesList = indexedWord.FilesContainWord;
-                        filesList.Add(filePath);
+                        Console.WriteLine("ww4");
+                        List<FilePath> filesList = indexedWord.FilesContainWord;
+                        Console.WriteLine("ww5");
+                        filesList.Add(new FilePath(filePath));
+                        Console.WriteLine("ww6");
                     }
                 }
 
+                Console.WriteLine("ww7");
                 if (flag == 0)
                 {
-                    List<string> filesList = new List<string>();
-                    filesList.Add(filePath);
+                    Console.WriteLine("ww8");
+                    List<FilePath> filesList = new List<FilePath>();
+                    
+                    Console.WriteLine("ww9");
                     Word word = new Word(wordsInFilesInLower);
-                    word.FilesContainWord = filesList;
+                    Console.WriteLine("ww10");
+                    FilePath filePathInstance = new FilePath(filePath);
+                    Console.WriteLine(filePathInstance.filePath);
+                    word.FilesContainWord.Add(filePathInstance);
+                    Console.WriteLine("ww11");
                     indexedWords.Add(word);
+                    Console.WriteLine("ww12");
                 }
             }
         }
