@@ -13,7 +13,7 @@ namespace Phase_4
             var students = JsonSerializer.Deserialize<List<Student>>(jsonString);
             jsonString = ReadLessonsFromFiles();
             var allLessons = JsonSerializer.Deserialize<List<LessonClass>>(jsonString);
-            var unused = new Process(students, allLessons);
+            var unused = new StudentProcessor(students, allLessons);
         }
 
         private static string ReadLessonsFromFiles()

@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Phase_4
 {
-    public class Process
+    public class StudentProcessor
     {
-        public Process(List<Student> students, List<LessonClass> allLessons)
+        public StudentProcessor(List<Student> students, List<LessonClass> allLessons)
         {
             SetAllStudents(students);
             SetLessonsForStudents(allLessons);
