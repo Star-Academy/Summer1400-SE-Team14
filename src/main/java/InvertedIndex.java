@@ -44,7 +44,7 @@ public class InvertedIndex {
 
     private void importWordsInList(String line, int fileNumber) {
         for (String wordsInFiles : line.split("\\W+")) {
-            wordsInFiles = convertToLowerCase(wordsInFiles);
+            wordsInFiles = normalize(wordsInFiles);
             if (stopWords.contains(wordsInFiles))
                 continue;
             List<FileInfo> idx = indexedWords.computeIfAbsent(wordsInFiles, k -> new LinkedList<>());
@@ -52,7 +52,7 @@ public class InvertedIndex {
         }
     }
 
-    private String convertToLowerCase(String wordsInFiles) {
+    private String normalize(String wordsInFiles) {
         return wordsInFiles.toLowerCase();
     }
 
@@ -82,7 +82,7 @@ public class InvertedIndex {
     private ArrayList<String> normalizeInputWords(ArrayList<String> wordsToFind) {
         ArrayList<String> returnArrayList = new ArrayList<>();
         for (String string : wordsToFind) {
-            returnArrayList.add(convertToLowerCase(string));
+            returnArrayList.add(normalize(string));
         }
         return returnArrayList;
     }
