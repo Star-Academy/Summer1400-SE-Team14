@@ -31,7 +31,7 @@ public class JavaTest {
     }
 
     @Test
-    public void test() throws IOException {
+    public void getFilesTest() throws IOException {
         File file = new File(PreProcessing.class.getResource("/EnglishData/57110").getPath());
         InvertedIndex invertedIndex = new InvertedIndex();
         invertedIndex.indexFile(file);
@@ -50,7 +50,7 @@ public class JavaTest {
         wordsToSearch.add("friend");
         Set<String> pathRoots = new HashSet<>();
         pathRoots.add(file.getPath());
-        Assertions.assertEquals(invertedIndex.search(wordsToSearch), pathRoots);
+        Assertions.assertEquals(pathRoots, invertedIndex.search(wordsToSearch));
     }
 
     @Test
