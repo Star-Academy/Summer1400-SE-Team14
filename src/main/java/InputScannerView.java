@@ -5,7 +5,7 @@ public class InputScannerView {
     public InputScannerView(InvertedIndex index, String string) {
         Scanner scanner = new Scanner(System.in);
         InputScanner inputScanner = new InputScanner(index);
-        if (!string.equals("")) {
+        if (!string.isEmpty()) {
             while (true) {
                 string = scanner.nextLine();
                 if (string.equals("--back")) break;
