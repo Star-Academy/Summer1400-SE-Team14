@@ -43,13 +43,18 @@ public class InvertedIndex {
     }
 
     private void importWordsInList(String line, int fileNumber) {
-        for (String wordsInFiles : line.split("\\W+")) {
+        String[] splitWords = splitWordsInLine(line);
+        for (String wordsInFiles : splitWords) {
             wordsInFiles = normalize(wordsInFiles);
             if (stopWords.contains(wordsInFiles))
                 continue;
             List<FileInfo> idx = indexedWords.computeIfAbsent(wordsInFiles, k -> new LinkedList<>());
             idx.add(new FileInfo(fileNumber));
         }
+    }
+
+    private String[] splitWordsInLine(String line) {
+        return line.split("\\W+");
     }
 
     private String normalize(String wordsInFiles) {
