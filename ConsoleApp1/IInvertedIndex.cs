@@ -5,33 +5,33 @@ namespace ConsoleApp1
 {
     public interface IInvertedIndex
     {
-        public HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles);
+         HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles);
 
-        public HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon);
-
-
-        public HashSet<string> FindCommonWords(List<HashSet<string>> wordsToFindCommon);
-
-        public HashSet<string> Search(List<string> wordsToFind);
-
-        public void FindWordInFiles(string word, HashSet<string> answer);
-        public void CheckCommandMatcher(string word, string key, HashSet<string> answer);
+         HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon);
 
 
-        public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
+         HashSet<string> FindCommonWords(List<HashSet<string>> wordsToFindCommon);
+
+         HashSet<string> Search(List<string> wordsToFind);
+
+         void FindWordInFiles(string word, HashSet<string> answer);
+         void CheckCommandMatcher(string word, string key, HashSet<string> answer);
 
 
-        public List<string> NormalizeInputWords(List<string> wordsToFind);
-
-        public string ConvertToLowerCase(string wordsInFiles);
+         void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
 
 
-        public void IndexFile(string[] fileDirectory);
+         List<string> NormalizeInputWords(List<string> wordsToFind);
 
-        public void ConvertFileToTokens(int fileNumber, string filePath);
+         string ConvertToLowerCase(string wordsInFiles);
 
-        public void ImportWordsInList(string line, int fileNumber);
 
-        public List<string> GetFiles();
+         void IndexFile(string[] fileDirectory);
+
+         void ConvertFileToTokens(int fileNumber, string filePath);
+
+         void ImportWordsInList(string line, int fileNumber);
+
+         List<string> GetFiles();
     }
 }
