@@ -111,9 +111,9 @@ namespace ConsoleApp1
         }
 
 
-        private static void AddFileNumbers(HashSet<FilePath> fileInfoList, HashSet<string> answer)
+        private static void AddFileNumbers(HashSet<FilePathClass> fileInfoList, HashSet<string> answer)
         {
-            foreach (FilePath t in fileInfoList) answer.Add(t.filePath);
+            foreach (FilePathClass t in fileInfoList) answer.Add(t.FilePath);
         }
 
 
@@ -174,12 +174,12 @@ namespace ConsoleApp1
                 if (CheckContainByIndexWords(wordsInFilesInLower) != null)
                 {
                     var filesList = CheckContainByIndexWords(wordsInFilesInLower).FilesContainWord;
-                    filesList.Add(new FilePath(filePath));
+                    filesList.Add(new FilePathClass(filePath));
                 }
                 else
                 {
                     var word = new Word(wordsInFilesInLower);
-                    var filePathInstance = new FilePath(filePath);
+                    var filePathInstance = new FilePathClass(filePath);
                     word.FilesContainWord.Add(filePathInstance);
                     _indexedWords.Add(word);
                 }

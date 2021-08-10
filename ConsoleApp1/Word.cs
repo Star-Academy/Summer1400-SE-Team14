@@ -12,11 +12,11 @@ namespace ConsoleApp1
 
         public string NameOfWord { get; }
 
-        public HashSet<FilePath> FilesContainWord { get; }
+        public HashSet<FilePathClass> FilesContainWord { get; }
 
         public Word(string nameOfWord)
         {
-            FilesContainWord = new HashSet<FilePath>();
+            FilesContainWord = new HashSet<FilePathClass>();
             NameOfWord = nameOfWord;
         }
     }
