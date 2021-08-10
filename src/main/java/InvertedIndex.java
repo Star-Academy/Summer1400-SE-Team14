@@ -23,7 +23,7 @@ public class InvertedIndex {
             "what", "when", "where", "which", "while", "who", "whom", "why",
             "will", "with", "would", "yet", "you", "your");
 
-    Map<String, List<FileInfo>> indexedWords = new HashMap<>();
+    final Map<String, List<FileInfo>> indexedWords = new HashMap<>();
     List<String> files = new ArrayList<>();
 
     public void indexFile(File file) throws IOException {
