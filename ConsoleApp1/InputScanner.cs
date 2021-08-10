@@ -34,21 +34,23 @@ namespace ConsoleApp1
         }
 
 
-        private static HashSet<string> Processes(InvertedIndex index, List<string> plusStrings, List<string> minusStrings,
+        private static HashSet<string> Processes(InvertedIndex index, List<string> plusStrings,
+            List<string> minusStrings,
             IEnumerable<string> normalStrings)
         {
-
             var answer = index.Search(plusStrings);
 
             var toDelete = index.Search(minusStrings);
-            var commons = normalStrings.Select(normalString => new List<string> {normalString}).Select(index.Search).ToList();
+            var commons = normalStrings.Select(normalString => new List<string> {normalString}).Select(index.Search)
+                .ToList();
 
             answer = index.FindCommonFiles(answer, commons);
             answer = index.DeleteGivenFiles(answer, toDelete);
             return answer;
         }
 
-        private static void addItemToOneOfThreeArrayLists(string iString, ICollection<string> plusStrings, ICollection<string> minusStrings,
+        private static void addItemToOneOfThreeArrayLists(string iString, ICollection<string> plusStrings,
+            ICollection<string> minusStrings,
             ICollection<string> normalStrings)
         {
             var pattern = new Regex("^\\+(.+)$");
