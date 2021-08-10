@@ -14,6 +14,7 @@ namespace ConsoleApp1
             while (true)
             {
                 var input = Console.ReadLine();
+                Console.WriteLine(input+")))))))))");
                 if (string.Equals(input, BackString)) break;
                 ShowResult(inputScanner.GetOrder(input));
             }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
@@ -21,6 +22,7 @@ namespace ConsoleApp1
             List<string> normalStrings = new List<string>();
             foreach (var s in inputSplit)
             {
+             //   Console.WriteLine(s+"**************************");
                 addItemToOneOfThreeArrayLists(s, plusStrings, minusStrings, normalStrings);
             }
 
@@ -36,7 +38,11 @@ namespace ConsoleApp1
         private HashSet<string> processes(InvertedIndex index, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
+           // Console.WriteLine(plusStrings[0]+"+++");
+
             HashSet<string> answer = index.Search(plusStrings);
+          //  Console.WriteLine(answer+"**************************");
+
             HashSet<string> toDelete = index.Search(minusStrings);
             List<HashSet<string>> commons = new List<HashSet<string>>();
             foreach (var normalString in normalStrings)
@@ -55,12 +61,12 @@ namespace ConsoleApp1
             List<string> normalStrings)
         {
             Regex pattern = new Regex("^\\+(.+)$");
-            MatchCollection matcher = pattern.Matches(iString);
+            Match matcher = pattern.Match(iString);
             Regex patternTwo = new Regex("^-(.+)$");
             MatchCollection matcherTwo = patternTwo.Matches(iString);
-            if (matcher.Count > 0)
+            if (matcher.Success)
             {
-                var toAdd = matcher[0].Value;
+                var toAdd = matcher.Value;
                 plusStrings.Add(toAdd);
             }
             else if (matcherTwo.Count > 0)
