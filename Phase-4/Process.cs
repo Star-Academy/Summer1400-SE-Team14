@@ -17,16 +17,17 @@ namespace Phase_4
 
         private static void PrintBestThreeStudents(IEnumerable<Student> orderedStudentsByAverage)
         {
-            var i = 0;
-            foreach (var student in orderedStudentsByAverage)
+            var topThreeStudents = FindTopThreeStudents(orderedStudentsByAverage);
+            foreach (var student in topThreeStudents)
             {
-                if (i > 2)
-                {
-                    break;
-                }
                 Console.WriteLine("FirstName: " + student.FirstName + "     LastName: " + student.LastName + "      Average: " + student.Average);
-                i++;
+
             }
+        }
+
+        private static IEnumerable<Student> FindTopThreeStudents(IEnumerable<Student> orderedStudentsByAverage)
+        {
+            return orderedStudentsByAverage.Take(3);
         }
 
         private static IEnumerable OrderStudentsByAverage()
