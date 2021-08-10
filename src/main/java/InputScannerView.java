@@ -16,7 +16,9 @@ public class InputScannerView {
         if (!string.isEmpty()) {
             while (true) {
                 string = scanner.nextLine();
-                if (string.equals(backString)) break;
+                if (string.equals(backString)) {
+                    break;
+                }
                 showResult(inputScanner.getOrder(string));
             }
         }
