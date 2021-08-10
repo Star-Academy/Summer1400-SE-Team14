@@ -5,7 +5,7 @@ namespace Phase_4
     {
         public static void Main(string[] args)
         {
-            var unused = new ReadFiles();
+            ReadFiles.ProcessFiles();
         }
     }
 }

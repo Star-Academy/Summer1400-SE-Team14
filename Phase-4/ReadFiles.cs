@@ -4,14 +4,10 @@ using System.Text.Json;
 
 namespace Phase_4
 {
-    public class ReadFiles
+    public static class ReadFiles
     {
-        public ReadFiles()
-        {
-            ProcessFiles();
-        }
-
-        private static void ProcessFiles()
+        
+        public static void ProcessFiles()
         {
             var jsonString = ReadEveryThingFromFiles();
             var students = JsonSerializer.Deserialize<List<Student>>(jsonString);
@@ -34,5 +30,6 @@ namespace Phase_4
             const string fileName = "C:\\Users\\mjmah\\OneDrive\\Desktop\\new\\Phase-4\\Students.json";
             return File.ReadAllText(fileName);
         }
+        
     }
 }
