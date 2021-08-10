@@ -5,7 +5,6 @@ namespace ConsoleApp1
     public class Context : DbContext
     {
         public DbSet<Word> SaveWords { set; get; }
-        public DbSet<FileInfo> FileInfos { set; get; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -22,7 +22,6 @@ namespace ConsoleApp1
             List<string> normalStrings = new List<string>();
             foreach (var s in inputSplit)
             {
-             //   Console.WriteLine(s+"**************************");
                 addItemToOneOfThreeArrayLists(s, plusStrings, minusStrings, normalStrings);
             }
 
@@ -38,10 +37,8 @@ namespace ConsoleApp1
         private HashSet<string> processes(InvertedIndex index, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
-           // Console.WriteLine(plusStrings[0]+"+++");
 
             HashSet<string> answer = index.Search(plusStrings);
-          //  Console.WriteLine(answer+"**************************");
 
             HashSet<string> toDelete = index.Search(minusStrings);
             List<HashSet<string>> commons = new List<HashSet<string>>();
