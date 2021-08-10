@@ -9,8 +9,8 @@ namespace Phase_4
     {
         public StudentProcessor(List<Student> students, List<LessonClass> allLessons)
         {
-            SetAllStudents(students);
-            SetLessonsForStudents(allLessons);
+            DataBase.SetAllStudents(students);
+            DataBase.SetLessonsForStudents(allLessons);
             var orderedStudentsByAverage = OrderStudentsByAverage();
             PrintBestThreeStudents((IEnumerable<Student>) orderedStudentsByAverage);
         }
@@ -20,8 +20,8 @@ namespace Phase_4
             var topThreeStudents = FindTopThreeStudents(orderedStudentsByAverage);
             foreach (var student in topThreeStudents)
             {
-                Console.WriteLine("FirstName: " + student.FirstName + "     LastName: " + student.LastName + "      Average: " + student.Average);
-
+                Console.WriteLine("FirstName: " + student.FirstName + "     LastName: " + student.LastName +
+                                  "      Average: " + student.Average);
             }
         }
 
@@ -32,22 +32,7 @@ namespace Phase_4
 
         private static IEnumerable OrderStudentsByAverage()
         {
-            return Student.AllStudents.OrderByDescending(s => s.Average);
-        }
-
-        private static void SetLessonsForStudents(List<LessonClass> allLessons)
-        {
-            foreach (var lessonClass in allLessons)
-            {
-                var studentNumber = lessonClass.StudentNumber;
-                var student = Student.GetStudentWithStudentNumber(studentNumber);
-                student.AddLessonToAllLessons(lessonClass);
-            }
-        }
-
-        private static void SetAllStudents(List<Student> students)
-        {
-            Student.AllStudents = students;
+            return DataBase.AllStudents.OrderByDescending(s => s.Average);
         }
     }
 }
