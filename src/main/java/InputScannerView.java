@@ -5,6 +5,7 @@ public class InputScannerView {
 
     private Scanner scanner;
     private InputScanner inputScanner;
+    private final String backString = "--back";
 
     public InputScannerView(InvertedIndex index) {
         this.scanner = new Scanner(System.in);
@@ -15,7 +16,7 @@ public class InputScannerView {
         if (!string.isEmpty()) {
             while (true) {
                 string = scanner.nextLine();
-                if (string.equals("--back")) break;
+                if (string.equals(backString)) break;
                 showResult(inputScanner.getOrder(string));
             }
         }
