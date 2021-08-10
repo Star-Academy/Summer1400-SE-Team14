@@ -6,19 +6,18 @@ namespace ConsoleApp1
 {
     public class Word
     {
-        public static List<Word> AllWords = new List<Word>();
 
-        [Key] public int Id { set; get; }
+        [Key] 
+        public int Id { set; get; }
 
-        public string NameOfWord { set; get; }
+        public string NameOfWord { get; }
 
-        public HashSet<FilePath> FilesContainWord { set; get; }
+        public HashSet<FilePath> FilesContainWord { get; }
 
         public Word(string nameOfWord)
         {
             FilesContainWord = new HashSet<FilePath>();
-            this.NameOfWord = nameOfWord;
-            AllWords.Add(this);
+            NameOfWord = nameOfWord;
         }
     }
 }
