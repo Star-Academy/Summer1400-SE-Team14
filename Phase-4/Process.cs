@@ -12,13 +12,13 @@ namespace Phase_4
             SetAllStudents(students);
             SetLessonsForStudents(allLessons);
             var orderedStudentsByAverage = OrderStudentsByAverage();
-            PrintBestThreeStudents(orderedStudentsByAverage);
+            PrintBestThreeStudents((IEnumerable<Student>) orderedStudentsByAverage);
         }
 
-        private void PrintBestThreeStudents(IEnumerable orderedStudentsByAverage)
+        private static void PrintBestThreeStudents(IEnumerable<Student> orderedStudentsByAverage)
         {
             var i = 0;
-            foreach (Student student in orderedStudentsByAverage)
+            foreach (var student in orderedStudentsByAverage)
             {
                 if (i > 2)
                 {
