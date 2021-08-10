@@ -16,7 +16,8 @@ public class PreProcessing {
             if (filesList == null) return "INVALID FILE LIST!";
             else {
                 addFilesToIndexFiles(filesList, index);
-                new InputScannerView(index, startString);
+                InputScannerView inputScannerView = new InputScannerView(index);
+                inputScannerView.start(startString);
                 return "end";
             }
         } catch (Exception e) {

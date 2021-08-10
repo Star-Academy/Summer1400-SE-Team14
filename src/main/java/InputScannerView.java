@@ -2,9 +2,16 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class InputScannerView {
-    public InputScannerView(InvertedIndex index, String string) {
-        Scanner scanner = new Scanner(System.in);
-        InputScanner inputScanner = new InputScanner(index);
+
+    private Scanner scanner;
+    private InputScanner inputScanner;
+
+    public InputScannerView(InvertedIndex index) {
+        this.scanner = new Scanner(System.in);
+        this.inputScanner = new InputScanner(index);
+    }
+
+    public void start(String string) {
         if (!string.isEmpty()) {
             while (true) {
                 string = scanner.nextLine();
