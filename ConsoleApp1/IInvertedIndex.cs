@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace ConsoleApp1
 {
@@ -16,7 +15,7 @@ namespace ConsoleApp1
 
         public void FindWordInFiles(string word, HashSet<string> answer);
 
-        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int andis);
+        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int antis);
         public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
 
 
