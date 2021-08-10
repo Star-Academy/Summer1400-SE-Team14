@@ -46,8 +46,9 @@ public class InvertedIndex {
         String[] splitWords = splitWordsInLine(line);
         for (String wordsInFiles : splitWords) {
             wordsInFiles = normalize(wordsInFiles);
-            if (stopWords.contains(wordsInFiles))
+            if (stopWords.contains(wordsInFiles)) {
                 continue;
+            }
             List<FileInfo> idx = indexedWords.computeIfAbsent(wordsInFiles, k -> new LinkedList<>());
             idx.add(new FileInfo(fileNumber));
         }
@@ -64,24 +65,32 @@ public class InvertedIndex {
     public Set<String> search(ArrayList<String> wordsToFind) {
         Set<String> answer = new HashSet<>();
         wordsToFind = normalizeInputWords(wordsToFind);
-        for (String word : wordsToFind) findWordInFiles(word, answer);
+        for (String word : wordsToFind) {
+            findWordInFiles(word, answer);
+        }
         return answer;
     }
 
     private void findWordInFiles(String word, Set<String> answer) {
-        for (String key : indexedWords.keySet()) checkCommandMatcher(word, key, answer);
+        for (String key : indexedWords.keySet()) {
+            checkCommandMatcher(word, key, answer);
+        }
     }
 
     private void checkCommandMatcher(String word, String key, Set<String> answer) {
         Matcher matcher = Pattern.compile(word).matcher(key);
         if (matcher.find()) {
             List<FileInfo> fileInfoList = indexedWords.get(key);
-            if (fileInfoList != null) addFileNumbers(fileInfoList, answer);
+            if (fileInfoList != null) {
+                addFileNumbers(fileInfoList, answer);
+            }
         }
     }
 
     private void addFileNumbers(List<FileInfo> fileInfoList, Set<String> answer) {
-        for (FileInfo t : fileInfoList) answer.add(files.get(t.getFileNumber()));
+        for (FileInfo t : fileInfoList) {
+            answer.add(files.get(t.getFileNumber()));
+        }
     }
 
     private ArrayList<String> normalizeInputWords(ArrayList<String> wordsToFind) {
