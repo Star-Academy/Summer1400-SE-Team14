@@ -95,14 +95,6 @@ public class JavaTest {
         Set<String> set = new HashSet<>();
         Assertions.assertEquals(set, inputScanner.getOrder("+friend -male"));
     }
-//    @Test
-//    public void giveInput() throws IOException {
-//        File file = new File(PreProcessing.class.getResource("/EnglishData/57110").getPath());
-//        InvertedIndex invertedIndex = new InvertedIndex();
-//        invertedIndex.indexFile(file);
-//        new InputScannerView(invertedIndex, "friend");
-//        Assertions.assertEquals(file.getPath(), outContent.toString());
-//    }
 
     @Test
     public void checkFindCommonWords() {
