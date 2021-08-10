@@ -1,34 +1,14 @@
-
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JavaTest {
-
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-
-
-    @Before
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @After
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
+public class InvertedIndexTests {
 
     @Test
     public void getFilesTest() throws IOException {
@@ -51,49 +31,6 @@ public class JavaTest {
         Set<String> pathRoots = new HashSet<>();
         pathRoots.add(file.getPath());
         Assertions.assertEquals(pathRoots, invertedIndex.search(wordsToSearch));
-    }
-
-    @Test
-    public void preProcessingTestValidPath() {
-        Assertions.assertNotEquals("INVALID PATH!", PreProcessing.preprocesses("/EnglishData", ""));
-    }
-
-    @Test
-    public void preProcessingTestInvalidPath() {
-        Assertions.assertEquals("INVALID PATH!", PreProcessing.preprocesses("/EnglishDAta/12", ""));
-    }
-
-
-    @Test
-    public void getOrderTest() throws IOException {
-        File file = new File(PreProcessing.class.getResource("/EnglishData/57110").getPath());
-        InvertedIndex invertedIndex = new InvertedIndex();
-        invertedIndex.indexFile(file);
-        InputScanner inputScanner = new InputScanner(invertedIndex);
-        Set<String> set = new HashSet<>();
-        set.add(file.getPath());
-        Assertions.assertEquals(set, inputScanner.getOrder("friend"));
-    }
-
-    @Test
-    public void fetOrderPlusStrings() throws IOException {
-        File file = new File(PreProcessing.class.getResource("/EnglishData/57110").getPath());
-        InvertedIndex invertedIndex = new InvertedIndex();
-        invertedIndex.indexFile(file);
-        InputScanner inputScanner = new InputScanner(invertedIndex);
-        Set<String> set = new HashSet<>();
-        set.add(file.getPath());
-        Assertions.assertEquals(set, inputScanner.getOrder("+friend"));
-    }
-
-    @Test
-    public void fetOrderMinusStrings() throws IOException {
-        File file = new File(PreProcessing.class.getResource("/EnglishData/57110").getPath());
-        InvertedIndex invertedIndex = new InvertedIndex();
-        invertedIndex.indexFile(file);
-        InputScanner inputScanner = new InputScanner(invertedIndex);
-        Set<String> set = new HashSet<>();
-        Assertions.assertEquals(set, inputScanner.getOrder("+friend -male"));
     }
 
     @Test
@@ -143,6 +80,6 @@ public class JavaTest {
 
         Assertions.assertEquals(answer, invertedIndex.findCommonFiles(answer , arrayList));
         Assertions.assertEquals(answer, invertedIndex.findCommonFiles(answer , new  ArrayList<Set<String>>()));
-
     }
+
 }

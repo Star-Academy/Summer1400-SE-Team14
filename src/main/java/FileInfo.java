@@ -1,4 +1,5 @@
 public class FileInfo {
+
     private final int fileNumber;
 
     public FileInfo(int fileNumber) {
