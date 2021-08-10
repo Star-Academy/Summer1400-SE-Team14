@@ -17,21 +17,8 @@ namespace ConsoleApp1
          void FindWordInFiles(string word, HashSet<string> answer);
          void CheckCommandMatcher(string word, string key, HashSet<string> answer);
 
-
-         void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
-
-
-         List<string> NormalizeInputWords(List<string> wordsToFind);
-
-         string ConvertToLowerCase(string wordsInFiles);
-
-
          void IndexFile(string[] fileDirectory);
 
-         void ConvertFileToTokens(int fileNumber, string filePath);
-
-         void ImportWordsInList(string line, int fileNumber);
-
-         List<string> GetFiles();
+       
     }
 }
