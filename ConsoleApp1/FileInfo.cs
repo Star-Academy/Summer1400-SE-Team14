@@ -3,26 +3,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConsoleApp1
 {
-    public class FileInfo
+    public abstract class FileInfo
     {
-        public int fileNumber { set; get; }
+        private int FileNumber { set; get; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { set; get; }
 
-        public FileInfo()
+        protected FileInfo()
         {
         }
 
-        public FileInfo(int fileNumber)
+        protected FileInfo(int fileNumber)
         {
-            this.fileNumber = fileNumber;
+            this.FileNumber = fileNumber;
         }
 
         public int GetFileNumber()
         {
-            return fileNumber;
+            return FileNumber;
         }
     }
 }

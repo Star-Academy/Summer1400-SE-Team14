@@ -134,7 +134,7 @@ namespace ConsoleApp1
             {
                 ConvertFileToTokens(filePath);
             }
-            
+
             using var context = new Context();
             context.Database.EnsureCreated();
             foreach (var indexedWord in _indexedWords)
