@@ -41,15 +41,15 @@ public class InputScanner {
     }
 
     private void addItemToOneOfThreeArrayLists(String string, ArrayList<String> plusStrings, ArrayList<String> minusStrings, ArrayList<String> normalStrings) {
-        Pattern pattern = Pattern.compile("^\\+(.+)$");
-        Matcher matcher = pattern.matcher(string);
-        Pattern pattern1 = Pattern.compile("^-(.+)$");
-        Matcher matcher1 = pattern1.matcher(string);
-        if (matcher.find()) {
-            String a = matcher.group(1);
+        Pattern patternForPlusWords = Pattern.compile("^\\+(.+)$");
+        Matcher matcherForPlusWords = patternForPlusWords.matcher(string);
+        Pattern patternForMinusWords = Pattern.compile("^-(.+)$");
+        Matcher matcherForMinusWords = patternForMinusWords.matcher(string);
+        if (matcherForPlusWords.find()) {
+            String a = matcherForPlusWords.group(1);
             plusStrings.add(a);
-        } else if (matcher1.find()) {
-            String a = matcher1.group(1);
+        } else if (matcherForMinusWords.find()) {
+            String a = matcherForMinusWords.group(1);
             minusStrings.add(a);
         } else normalStrings.add(string);
     }
