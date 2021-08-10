@@ -8,7 +8,7 @@ namespace ConsoleApp1
         {
             while (true)
             {
-                string result = PreProcessing.Preprocesses();
+                var result = PreProcessing.Preprocesses();
                 if (string.Equals("end", result))
                 {
                     return;
