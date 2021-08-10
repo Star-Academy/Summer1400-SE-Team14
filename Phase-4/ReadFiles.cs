@@ -18,16 +18,14 @@ namespace Phase_4
 
         private static string ReadLessonsFromFiles()
         {
-            // fileName = "C:\\Users\\ASUS\\RiderProjects\\Phase-4\\Phase-4\\lessons.json";
-            const string fileName = "C:\\Users\\mjmah\\OneDrive\\Desktop\\new\\Phase-4\\lessons.json";
+            const string fileName = "../../../../Phase-4/lessons.json";
             return File.ReadAllText(fileName);
         }
 
 
         private static string ReadEveryThingFromFiles()
         {
-            // string fileName = "C:\\Users\\ASUS\\RiderProjects\\Phase-4\\Phase-4\\Students.json";
-            const string fileName = "C:\\Users\\mjmah\\OneDrive\\Desktop\\new\\Phase-4\\Students.json";
+            const string fileName = "../../../../Phase-4/Students.json";
             return File.ReadAllText(fileName);
         }
         
