@@ -1,40 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace ConsoleApp1
 {
-    public class PreProcessing
+    public static class PreProcessing
     {
-        static string invalidPathString = "INVALID PATH!";
-
         public static string Preprocesses()
         {
-            string[] files = Directory.GetFiles(@"C:\Users\ASUS\RiderProjects\Phase-8\New folder\");
-            Console.WriteLine("1!!");
+            var files = Directory.GetFiles(@"C:\Users\ASUS\RiderProjects\Phase-8\New folder\");
             try
             {
-                Console.WriteLine("2!!");
-
-                InvertedIndex index = new InvertedIndex();
-                Console.WriteLine("3!!");
-
-                addFilesToIndexFiles(files, index);
-                Console.WriteLine("4!!");
-
-                new InputScannerView(index);
-                Console.WriteLine("5!!");
-
+                var index = new InvertedIndex();
+                AddFilesToIndexFiles(files, index);
+                var unused = new InputScannerView(index);
                 return "end";
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-
                 return "an error has happened!";
             }
         }
 
-        private static void addFilesToIndexFiles(string[] filesList, InvertedIndex index)
+        private static void AddFilesToIndexFiles(IEnumerable<string> filesList, InvertedIndex index)
         {
             index.IndexFile(filesList);
         }
