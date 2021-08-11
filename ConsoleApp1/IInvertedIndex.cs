@@ -4,32 +4,24 @@ namespace ConsoleApp1
 {
     public interface IInvertedIndex
     {
-        public HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles);
+        HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles);
 
-        public HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon);
-
-
-        public HashSet<string> FindCommonWords(List<HashSet<string>> wordsToFindCommon);
-
-        public HashSet<string> Search(List<string> wordsToFind);
-
-        public void FindWordInFiles(string word, HashSet<string> answer);
-
-        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int antis);
-        public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
+        HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon);
 
 
-        public List<string> NormalizeInputWords(List<string> wordsToFind);
+        HashSet<string> FindCommonWords(List<HashSet<string>> wordsToFindCommon);
 
-        public string ConvertToLowerCase(string wordsInFiles);
+        HashSet<string> Search(List<string> wordsToFind);
 
+        void FindWordInFiles(string word, HashSet<string> answer);
 
-        public void IndexFile(string[] fileDirectory);
+        void CheckCommandMatcher(string word, string key, HashSet<string> answer, int antis);
+        void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer);
+        
+        void IndexFile(string[] fileDirectory);
+        
+        void ImportWordsInList(string line, int fileNumber);
 
-        public void ConvertFileToTokens(int fileNumber, string filePath);
-
-        public void ImportWordsInList(string line, int fileNumber);
-
-        public List<string> GetFiles();
+        List<string> GetFiles();
     }
 }

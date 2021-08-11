@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
-    public class InvertedIndex
+    public class InvertedIndex : INormalize
     {
         private readonly List<string> _stopWords = new List<string>
         {
@@ -61,7 +61,7 @@ namespace ConsoleApp1
         }
 
 
-        private HashSet<string> FindCommonWords(List<HashSet<string>> wordsToFindCommon)
+        public HashSet<string> FindCommonWords(List<HashSet<string>> wordsToFindCommon)
         {
             if (wordsToFindCommon.Count <= 0)
             {
@@ -95,7 +95,7 @@ namespace ConsoleApp1
             return answer;
         }
 
-        private void FindWordInFiles(string word, HashSet<string> answer)
+        public void FindWordInFiles(string word, HashSet<string> answer)
         {
             foreach (var keyWord in _indexedWords)
             {
@@ -104,7 +104,7 @@ namespace ConsoleApp1
             }
         }
 
-        private void CheckCommandMatcher(string word, string key, HashSet<string> answer, int antis)
+        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int antis)
         {
             var rg = new Regex(word);
             var matcher = rg.Match(key);
@@ -121,21 +121,22 @@ namespace ConsoleApp1
         }
 
 
-        private static void AddFileNumbers(HashSet<FilePathClass> fileInfoList, HashSet<string> answer)
+        public void AddFileNumbers(HashSet<FilePathClass> fileInfoList, HashSet<string> answer)
         {
             foreach (FilePathClass t in fileInfoList) answer.Add(t.FilePath);
         }
 
 
-        private List<string> NormalizeInputWords(List<string> wordsToFind)
+        public List<string> NormalizeInputWords(List<string> wordsToFind)
         {
             return wordsToFind.Select(ConvertToLowerCase).ToList();
         }
 
-        private static string ConvertToLowerCase(string wordsInFiles)
+        public string ConvertToLowerCase(string wordsInFiles)
         {
             return wordsInFiles.ToLower();
         }
+        
 
 
         public void IndexFile(IEnumerable<string> filePaths)
@@ -155,7 +156,7 @@ namespace ConsoleApp1
             context.SaveChanges();
         }
 
-        private void ConvertFileToTokens(string filePath)
+        public void ConvertFileToTokens(string filePath)
         {
             var sr = new StreamReader(filePath);
 
@@ -170,7 +171,7 @@ namespace ConsoleApp1
             sr.Close();
         }
 
-        private void ImportWordsInList(string line, string filePath)
+        public void ImportWordsInList(string line, string filePath)
         {
             foreach (var wordsInFiles in line.Split(" "))
             {
@@ -195,7 +196,7 @@ namespace ConsoleApp1
             }
         }
 
-        private Word CheckContainByIndexWords(string wordName)
+        public Word CheckContainByIndexWords(string wordName)
         {
             return _indexedWords.FirstOrDefault(indexedWord => indexedWord.NameOfWord.Equals(wordName));
         }
