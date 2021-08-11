@@ -4,7 +4,8 @@
     {
         public static void Main(string[] args)
         {
-            new ViewPreProcessing();
+            ViewPreProcessing viewPreProcessing = new ViewPreProcessing();
+            viewPreProcessing.Start();
         }
     }
 }

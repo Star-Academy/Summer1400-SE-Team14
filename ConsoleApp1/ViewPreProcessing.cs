@@ -4,7 +4,7 @@ namespace ConsoleApp1
 {
     public class ViewPreProcessing
     {
-        public ViewPreProcessing()
+        public void Start()
         {
             while (true)
             {
