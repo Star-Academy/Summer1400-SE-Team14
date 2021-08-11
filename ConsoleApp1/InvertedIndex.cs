@@ -32,7 +32,7 @@ namespace ConsoleApp1
 
         public HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles)
         {
-            HashSet<string> common = answer.Intersect(deleteFiles).ToHashSet();
+            var common = answer.Intersect(deleteFiles).ToHashSet();
 
             answer.RemoveWhere(x => common.Contains(x));
             return answer;
@@ -40,7 +40,7 @@ namespace ConsoleApp1
 
         public HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon)
         {
-            HashSet<string> commonWords = FindCommonWords(wordsToFindCommon);
+            var commonWords = FindCommonWords(wordsToFindCommon);
             if (answer.Count > 0 && commonWords.Count > 0)
             {
                 answer.IntersectWith(commonWords);
@@ -68,7 +68,7 @@ namespace ConsoleApp1
                 return new HashSet<string>();
             }
 
-            HashSet<string> commonWords = wordsToFindCommon[0];
+            var commonWords = wordsToFindCommon[0];
             if (wordsToFindCommon.Count == 1)
             {
                 return commonWords;
@@ -86,7 +86,7 @@ namespace ConsoleApp1
         {
             var answer = new HashSet<string>();
             wordsToFind = NormalizeInputWords(wordsToFind);
-            foreach (string word in wordsToFind) FindWordInFiles(word, answer);
+            foreach (var word in wordsToFind) FindWordInFiles(word, answer);
 
 
             return answer;
@@ -164,7 +164,6 @@ namespace ConsoleApp1
         {
             foreach (var wordsInFiles in line.Split(" "))
             {
-                // Console.WriteLine(wordsInFiles);
                 var wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
                 if (_stopWords.Contains(wordsInFilesInLower))
                 {
