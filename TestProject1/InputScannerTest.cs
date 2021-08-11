@@ -8,13 +8,13 @@ namespace TestProject1
 {
     public class UnitTest1
     {
-       
+
         [Fact]
         public void InputScannerTest()
         {
             IInvertedIndex invertedIndex = Substitute.For<IInvertedIndex>();
-            List<string> list = new List<string>();
-            list.Add("friend");
+            List<string> list = new List<string>(){"friend"};
+
             HashSet<string> answer = new HashSet<string>();
             answer.Add("C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\TestProject1\\57110");
             invertedIndex.Search(list).Returns(answer);
