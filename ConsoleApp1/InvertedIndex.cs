@@ -40,7 +40,7 @@ namespace ConsoleApp1
 
         public HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon)
         {
-            HashSet<string> commonWords = FindCommonWords(wordsToFindCommon);
+            var commonWords = FindCommonWords(wordsToFindCommon);
             if (answer.Count > 0 && commonWords.Count > 0)
             {
                 answer.IntersectWith(commonWords);
@@ -68,13 +68,13 @@ namespace ConsoleApp1
                 return new HashSet<string>();
             }
 
-            HashSet<string> commonWords = wordsToFindCommon[0];
+            var commonWords = wordsToFindCommon[0];
             if (wordsToFindCommon.Count == 1)
             {
                 return commonWords;
             }
 
-            for (int i = 1; i < wordsToFindCommon.Count; i++)
+            for (var i = 1; i < wordsToFindCommon.Count; i++)
             {
                 commonWords.IntersectWith(wordsToFindCommon[i]);
             }
@@ -84,15 +84,15 @@ namespace ConsoleApp1
 
         public HashSet<string> Search(List<string> wordsToFind)
         {
-            HashSet<string> answer = new HashSet<string>();
+            var answer = new HashSet<string>();
             wordsToFind = NormalizeInputWords(wordsToFind);
-            foreach (string word in wordsToFind) FindWordInFiles(word, answer);
+            foreach (var word in wordsToFind) FindWordInFiles(word, answer);
             return answer;
         }
 
         public void FindWordInFiles(string word, HashSet<string> answer)
         {
-            foreach (string key in indexedWords.Keys)
+            foreach (var key in indexedWords.Keys)
             {
                 CheckCommandMatcher(word, key, answer);
             }
@@ -100,11 +100,11 @@ namespace ConsoleApp1
 
         public void CheckCommandMatcher(string word, string key, HashSet<string> answer)
         {
-            Regex rg = new Regex(word);
-            Match matcher = rg.Match(key);
+            var rg = new Regex(word);
+            var matcher = rg.Match(key);
             if (matcher.Success)
             {
-                List<FileInfo> fileInfoList = indexedWords[key];
+                var fileInfoList = indexedWords[key];
                 if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
             }
         }
@@ -112,14 +112,14 @@ namespace ConsoleApp1
 
         public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer)
         {
-            foreach (FileInfo t in fileInfoList) answer.Add(files[t.GetFileNumber() - 1]);
+            foreach (var t in fileInfoList) answer.Add(files[t.GetFileNumber() - 1]);
         }
 
 
         public List<string> NormalizeInputWords(List<string> wordsToFind)
         {
-            List<string> returnArrayList = new List<string>();
-            foreach (string wordString in wordsToFind)
+            var returnArrayList = new List<string>();
+            foreach (var wordString in wordsToFind)
             {
                 returnArrayList.Add(ConvertToLowerCase(wordString));
             }
@@ -136,7 +136,7 @@ namespace ConsoleApp1
         public void IndexFile(string[] filePaths)
         {
            
-            int fileNumber = 0;
+            var fileNumber = 0;
             foreach (var filePath in filePaths)
             {
                 files.Add(filePath);
@@ -147,12 +147,12 @@ namespace ConsoleApp1
 
         public void ConvertFileToTokens(int fileNumber, string filePath)
         {
-            StreamReader sr = new StreamReader(filePath);
+            var sr = new StreamReader(filePath);
 
 
             sr.BaseStream.Seek(0, SeekOrigin.Begin);
 
-            string str = sr.ReadLine();
+            var str = sr.ReadLine();
 
             while (str != null)
             {
@@ -167,7 +167,7 @@ namespace ConsoleApp1
         {
             foreach (string wordsInFiles in line.Split("\\W+"))
             {
-                string wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
+                var wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
                 if (stopWords.Contains(wordsInFilesInLower))
                     continue;
                 if (indexedWords.ContainsKey(wordsInFilesInLower))
