@@ -4,7 +4,7 @@
     {
         public static void Main(string[] args)
         {
-            var unused = new ViewPreProcessing();
+            ViewPreProcessing.StartViewPreProcessing();
         }
     }
 }
