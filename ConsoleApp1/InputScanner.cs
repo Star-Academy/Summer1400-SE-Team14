@@ -21,10 +21,10 @@ namespace ConsoleApp1
             List<string> normalStrings = new List<string>();
             foreach (var s in inputSplit)
             {
-                addItemToOneOfThreeArrayLists(s, plusStrings, minusStrings, normalStrings);
+                AddItemToOneOfThreeArrayLists(s, plusStrings, minusStrings, normalStrings);
             }
 
-            return processes(index, plusStrings, minusStrings, normalStrings);
+            return Processes(index, plusStrings, minusStrings, normalStrings);
         }
 
         private static IEnumerable<string> SplitInput(string input)
@@ -33,7 +33,7 @@ namespace ConsoleApp1
         }
 
 
-        private HashSet<string> processes(IInvertedIndex index, List<string> plusStrings, List<string> minusStrings,
+        private HashSet<string> Processes(IInvertedIndex index, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
             HashSet<string> answer = index.Search(plusStrings);
@@ -51,7 +51,7 @@ namespace ConsoleApp1
             return answer;
         }
 
-        private void addItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
+        private void AddItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
             List<string> normalStrings)
         {
             Regex pattern = new Regex("^\\+(.+)$");
@@ -68,7 +68,10 @@ namespace ConsoleApp1
                 var toAdd = matcherTwo[0].Value;
                 minusStrings.Add(toAdd);
             }
-            else normalStrings.Add(iString);
+            else
+            {
+                normalStrings.Add(iString);
+            }
         }
     }
 }
