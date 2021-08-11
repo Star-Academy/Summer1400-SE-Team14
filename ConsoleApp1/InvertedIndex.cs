@@ -86,7 +86,10 @@ namespace ConsoleApp1
         {
             var answer = new HashSet<string>();
             wordsToFind = NormalizeInputWords(wordsToFind);
-            foreach (var word in wordsToFind) FindWordInFiles(word, answer);
+            foreach (var word in wordsToFind)
+            {
+                FindWordInFiles(word, answer);
+            }
 
 
             return answer;
@@ -105,9 +108,15 @@ namespace ConsoleApp1
         {
             var rg = new Regex(word);
             var matcher = rg.Match(key);
-            if (!matcher.Success) return;
+            if (!matcher.Success)
+            {
+                return;
+            }
             var fileInfoList = _indexedWords[antis].FilesContainWord;
-            if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
+            if (fileInfoList != null)
+            {
+                AddFileNumbers(fileInfoList, answer);
+            }
         }
 
 
