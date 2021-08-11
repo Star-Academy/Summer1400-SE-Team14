@@ -32,7 +32,7 @@ namespace ConsoleApp1
 
         public HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles)
         {
-            HashSet<string> common = answer.Intersect(deleteFiles).ToHashSet();
+            var common = answer.Intersect(deleteFiles).ToHashSet();
 
             answer.RemoveWhere(x => common.Contains(x));
             return answer;
