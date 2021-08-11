@@ -112,6 +112,7 @@ namespace ConsoleApp1
             {
                 return;
             }
+
             var fileInfoList = _indexedWords[antis].FilesContainWord;
             if (fileInfoList != null)
             {
