@@ -51,13 +51,13 @@ namespace ConsoleApp1
             return answer;
         }
 
-        private void AddItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
-            List<string> normalStrings)
+        private static void AddItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
+            ICollection<string> normalStrings)
         {
-            Regex pattern = new Regex("^\\+(.+)$");
-            MatchCollection matcher = pattern.Matches(iString);
-            Regex patternTwo = new Regex("^-(.+)$");
-            MatchCollection matcherTwo = patternTwo.Matches(iString);
+            var pattern = new Regex("^\\+(.+)$");
+            var matcher = pattern.Matches(iString);
+            var patternTwo = new Regex("^-(.+)$");
+            var matcherTwo = patternTwo.Matches(iString);
             if (matcher.Count > 0)
             {
                 var toAdd = matcher[0].Value;
