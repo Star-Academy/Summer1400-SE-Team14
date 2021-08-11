@@ -8,7 +8,7 @@ namespace TestProject1
     public class InvertedIndexTest
     {
         [Fact]
-        public void TestDeleteGivenFiles()
+        public void DeleteGivenFiles_ShouldDeleteFiles_WhenIsGivenTwoLists()
         {
             IInvertedIndex invertedIndex = new InvertedIndex();
             HashSet<string> set = new HashSet<string>() {"asd", "qwe"};
@@ -20,7 +20,7 @@ namespace TestProject1
         }
 
         [Fact]
-        public void TestFindCommonWords_TestingNull()
+        public void FindCommonWords_ShoulReturnNull_WhenGivenListIsNull()
         {
             IInvertedIndex invertedIndex = new InvertedIndex();
             List<HashSet<String>> arrayList = new List<HashSet<string>>();
@@ -28,7 +28,7 @@ namespace TestProject1
         }
 
         [Fact]
-        public void TestFindCommonWords_BasicTest()
+        public void FindCommonWords_ShouldReturnList_WhenHasOneImput()
         {
             IInvertedIndex invertedIndex = new InvertedIndex();
             HashSet<String> set = new HashSet<string>() {"asd"};
@@ -39,7 +39,7 @@ namespace TestProject1
         }
 
         [Fact]
-        public void TestFindCommonWords_HardTest()
+        public void FindCommonWords_ShouldGiveCommonsBetween_WhenIsGivenTwoLists()
         {
             IInvertedIndex invertedIndex = new InvertedIndex();
             HashSet<String> set = new HashSet<string>() {"asd"};
@@ -53,7 +53,7 @@ namespace TestProject1
 
 
         [Fact]
-        public void CheckDeleteGivenFiles()
+        public void DeleteGivenFiles_ShouldDeleteDifferentFiles_WhenIsGivenLists()
         {
             InvertedIndex invertedIndex = new InvertedIndex();
             HashSet<string> set = new HashSet<string>() {"asd", "qwe"};
