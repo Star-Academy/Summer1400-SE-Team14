@@ -10,6 +10,8 @@ namespace ConsoleApp1
         {
         }
 
+        [Key]
+        public int Id { get; set; }
         public FilePathClass(string filePath)
         {
             this.FilePath = filePath;
@@ -17,7 +19,7 @@ namespace ConsoleApp1
         }
 
         private static readonly HashSet<string> AllFilePaths = new HashSet<string>();
-        [Key]
+        // [Key]
         public string FilePath { get; }
     }
 }
