@@ -164,7 +164,7 @@ namespace ConsoleApp1
         {
             foreach (var wordsInFiles in line.Split(" "))
             {
-                Console.WriteLine(wordsInFiles);
+                // Console.WriteLine(wordsInFiles);
                 var wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
                 if (_stopWords.Contains(wordsInFilesInLower))
                 {

@@ -6,6 +6,9 @@ namespace ConsoleApp1
 {
     public class Word
     {
+        public Word()
+        {
+        }
 
         [Key] 
         public int Id { set; get; }
