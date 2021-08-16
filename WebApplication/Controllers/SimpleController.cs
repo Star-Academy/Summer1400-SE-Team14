@@ -5,20 +5,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApplication.Controllers
 {
     [ApiController]
-    [Route("[controller]/[Action]")]
+    [Route("[controller]/[action]")]
     public class SimpleController : ControllerBase
     {
         [HttpGet]
         public string Get(string input)
         {
-            var result = PreProcessing.Preprocesses(input);
-            var answer = "";
-            foreach (var s in result)
-            {
-                answer += s;
-                answer += "\n";
-            }
-            return answer;
+            Console.WriteLine(input);
+            return PreProcessing.Preprocesses(input);
         }
     }
 }

@@ -1,31 +1,31 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
     public class InputScanner
     {
-        private readonly InvertedIndex _index;
+        private IInvertedIndex index;
 
-        public InputScanner(InvertedIndex index)
+        public InputScanner(IInvertedIndex index)
         {
-            this._index = index;
+            this.index = index;
         }
 
 
-        public IEnumerable<string> GetOrder(string input)
+        public HashSet<string> GetOrder(string input)
         {
-            var inputSplit = SplitInput(input);
-            var plusStrings = new List<string>();
-            var minusStrings = new List<string>();
-            var normalStrings = new List<string>();
+            IEnumerable<string> inputSplit = SplitInput(input);
+            List<string> plusStrings = new List<string>();
+            List<string> minusStrings = new List<string>();
+            List<string> normalStrings = new List<string>();
             foreach (var s in inputSplit)
             {
-                addItemToOneOfThreeArrayLists(s, plusStrings, minusStrings, normalStrings);
+                AddItemToOneOfThreeArrayLists(s, plusStrings, minusStrings, normalStrings);
             }
 
-            return Processes(_index, plusStrings, minusStrings, normalStrings);
+            return Processes(index, plusStrings, minusStrings, normalStrings);
         }
 
         private static IEnumerable<string> SplitInput(string input)
@@ -34,40 +34,57 @@ namespace ConsoleApp1
         }
 
 
-        private static HashSet<string> Processes(InvertedIndex index, List<string> plusStrings,
-            List<string> minusStrings,
-            IEnumerable<string> normalStrings)
+        private HashSet<string> Processes(IInvertedIndex index, List<string> plusStrings, List<string> minusStrings,
+            List<string> normalStrings)
         {
-            var answer = index.Search(plusStrings);
-
-            var toDelete = index.Search(minusStrings);
-            var commons = normalStrings.Select(normalString => new List<string> {normalString}).Select(index.Search)
-                .ToList();
+            HashSet<string> answer = index.Search(plusStrings);
+            HashSet<string> toDelete = index.Search(minusStrings);
+            List<HashSet<string>> commons = new List<HashSet<string>>();
+            foreach (var normalString in normalStrings)
+            {
+                List<string> arrayList = new List<string>();
+                arrayList.Add(normalString);
+                commons.Add(index.Search(arrayList));
+            }
 
             answer = index.FindCommonFiles(answer, commons);
             answer = index.DeleteGivenFiles(answer, toDelete);
             return answer;
         }
 
-        private static void addItemToOneOfThreeArrayLists(string iString, ICollection<string> plusStrings,
-            ICollection<string> minusStrings,
-            ICollection<string> normalStrings)
+        private void AddItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
+            List<string> normalStrings)
         {
-            var pattern = new Regex("^\\+(.+)$");
-            var matcher = pattern.Match(iString);
-            var patternTwo = new Regex("^-(.+)$");
-            var matcherTwo = patternTwo.Matches(iString);
+            Regex pattern = new Regex("\\+(.+)$");
+            Match matcher = pattern.Match(iString);
+            Regex patternTwo = new Regex("^-(.+)$");
+            MatchCollection matcherTwo = patternTwo.Matches(iString);
             if (matcher.Success)
             {
                 var toAdd = matcher.Value;
-                plusStrings.Add(toAdd);
+                var remove = toAdd.Remove(0,1);
+
+                Console.WriteLine(remove);
+
+                plusStrings.Add(remove);
             }
             else if (matcherTwo.Count > 0)
             {
                 var toAdd = matcherTwo[0].Value;
-                minusStrings.Add(toAdd);
+                var remove = toAdd.Remove(0,1);
+
+                Console.WriteLine(remove);
+
+                minusStrings.Add(remove);
             }
-            else normalStrings.Add(iString);
+            else
+            {
+                normalStrings.Add(iString);
+            }
+            foreach (var plusString in plusStrings)
+            {
+                Console.WriteLine(plusString);
+            }
         }
     }
 }

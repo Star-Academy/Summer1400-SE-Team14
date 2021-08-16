@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
-    public class InvertedIndex : INormalize
+    public class InvertedIndex : IInvertedIndex, IFileHandler , INormalize
     {
-        private readonly List<string> _stopWords = new List<string>
+        static List<string> stopWords = new List<string>
         {
             "a", "able", "about",
             "across", "after", "all", "almost", "also", "am", "among", "an",
@@ -27,12 +26,13 @@ namespace ConsoleApp1
             "will", "with", "would", "yet", "you", "your"
         };
 
-        private readonly List<Word> _indexedWords = new List<Word>();
+        static Dictionary<string, List<FileInfo>> indexedWords = new Dictionary<string, List<FileInfo>>();
+        static List<string> files = new List<string>();
 
 
         public HashSet<string> DeleteGivenFiles(HashSet<string> answer, HashSet<string> deleteFiles)
         {
-            var common = answer.Intersect(deleteFiles).ToHashSet();
+            HashSet<string> common = answer.Intersect(deleteFiles).ToHashSet();
 
             answer.RemoveWhere(x => common.Contains(x));
             return answer;
@@ -40,7 +40,7 @@ namespace ConsoleApp1
 
         public HashSet<string> FindCommonFiles(HashSet<string> answer, List<HashSet<string>> wordsToFindCommon)
         {
-            var commonWords = FindCommonWords(wordsToFindCommon);
+            HashSet<string> commonWords = FindCommonWords(wordsToFindCommon);
             if (answer.Count > 0 && commonWords.Count > 0)
             {
                 answer.IntersectWith(commonWords);
@@ -68,7 +68,7 @@ namespace ConsoleApp1
                 return new HashSet<string>();
             }
 
-            var commonWords = wordsToFindCommon[0];
+            HashSet<string> commonWords = wordsToFindCommon[0];
             if (wordsToFindCommon.Count == 1)
             {
                 return commonWords;
@@ -84,121 +84,110 @@ namespace ConsoleApp1
 
         public HashSet<string> Search(List<string> wordsToFind)
         {
-            var answer = new HashSet<string>();
+            HashSet<string> answer = new HashSet<string>();
             wordsToFind = NormalizeInputWords(wordsToFind);
-            foreach (var word in wordsToFind)
-            {
-                FindWordInFiles(word, answer);
-            }
-
-
+            foreach (string word in wordsToFind) FindWordInFiles(word, answer);
             return answer;
         }
 
         public void FindWordInFiles(string word, HashSet<string> answer)
         {
-            foreach (var keyWord in _indexedWords)
+            foreach (string key in indexedWords.Keys)
             {
-                var antis = _indexedWords.FindIndex(a => a.NameOfWord.Equals(keyWord.NameOfWord));
-                CheckCommandMatcher(word, keyWord.NameOfWord, answer, antis);
+                CheckCommandMatcher(word, key, answer);
             }
         }
 
-        public void CheckCommandMatcher(string word, string key, HashSet<string> answer, int antis)
+        public void CheckCommandMatcher(string word, string key, HashSet<string> answer)
         {
-            var rg = new Regex(word);
-            var matcher = rg.Match(key);
-            if (!matcher.Success)
+            Regex rg = new Regex(word);
+            Match matcher = rg.Match(key);
+            if (matcher.Success)
             {
-                return;
-            }
-
-            var fileInfoList = _indexedWords[antis].FilesContainWord;
-            if (fileInfoList != null)
-            {
-                AddFileNumbers(fileInfoList, answer);
+                List<FileInfo> fileInfoList = indexedWords[key];
+                if (fileInfoList != null) AddFileNumbers(fileInfoList, answer);
             }
         }
 
 
-        public void AddFileNumbers(HashSet<FilePathClass> fileInfoList, HashSet<string> answer)
+        public void AddFileNumbers(List<FileInfo> fileInfoList, HashSet<string> answer)
         {
-            foreach (FilePathClass t in fileInfoList) answer.Add(t.FilePath);
+            foreach (FileInfo t in fileInfoList) answer.Add(files[t.GetFileNumber() - 1]);
         }
 
 
         public List<string> NormalizeInputWords(List<string> wordsToFind)
         {
-            return wordsToFind.Select(ConvertToLowerCase).ToList();
+            List<string> returnArrayList = new List<string>();
+            foreach (string wordString in wordsToFind)
+            {
+                returnArrayList.Add(ConvertToLowerCase(wordString));
+            }
+
+            return returnArrayList;
         }
 
         public string ConvertToLowerCase(string wordsInFiles)
         {
             return wordsInFiles.ToLower();
         }
-        
 
 
-        public void IndexFile(IEnumerable<string> filePaths)
+        public void IndexFile(string[] filePaths)
         {
+           
+            int fileNumber = 0;
             foreach (var filePath in filePaths)
             {
-                ConvertFileToTokens(filePath);
+                files.Add(filePath);
+                fileNumber++;
+                ConvertFileToTokens(fileNumber, filePath);
             }
-
-            // using var context = new Context();
-            // context.Database.EnsureCreated();
-            // foreach (var indexedWord in _indexedWords)
-            // {
-            //     context.SaveWords.Add(indexedWord);
-            // }
-            //
-            // context.SaveChanges();
         }
 
-        public void ConvertFileToTokens(string filePath)
+        public void ConvertFileToTokens(int fileNumber, string filePath)
         {
-            var sr = new StreamReader(filePath);
+            StreamReader sr = new StreamReader(filePath);
+
 
             sr.BaseStream.Seek(0, SeekOrigin.Begin);
-            var str = sr.ReadLine();
+
+            string str = sr.ReadLine();
+
             while (str != null)
             {
-                ImportWordsInList(str, filePath);
+                ImportWordsInList(str, fileNumber);
                 str = sr.ReadLine();
             }
 
             sr.Close();
         }
 
-        public void ImportWordsInList(string line, string filePath)
+        public void ImportWordsInList(string line, int fileNumber)
         {
-            foreach (var wordsInFiles in line.Split(" "))
+            foreach (string wordsInFiles in line.Split("\\W+"))
             {
-                var wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
-                if (_stopWords.Contains(wordsInFilesInLower))
-                {
+                string wordsInFilesInLower = ConvertToLowerCase(wordsInFiles);
+                if (stopWords.Contains(wordsInFilesInLower))
                     continue;
+                if (indexedWords.ContainsKey(wordsInFilesInLower))
+                {
+                    List<FileInfo> filesList = indexedWords[wordsInFilesInLower];
+                    filesList.Add(new FileInfo(fileNumber));
                 }
 
-                if (CheckContainByIndexWords(wordsInFilesInLower) != null)
+                if (!indexedWords.ContainsKey(wordsInFilesInLower))
                 {
-                    var filesList = CheckContainByIndexWords(wordsInFilesInLower).FilesContainWord;
-                    filesList.Add(new FilePathClass(filePath));
-                }
-                else
-                {
-                    var word = new Word(wordsInFilesInLower);
-                    var filePathInstance = new FilePathClass(filePath);
-                    word.FilesContainWord.Add(filePathInstance);
-                    _indexedWords.Add(word);
+                    List<FileInfo> filesList = new List<FileInfo>();
+                    filesList.Add(new FileInfo(fileNumber));
+                    indexedWords.Add(wordsInFilesInLower, filesList);
                 }
             }
         }
 
-        public Word CheckContainByIndexWords(string wordName)
+        public List<string> GetFiles()
         {
-            return _indexedWords.FirstOrDefault(indexedWord => indexedWord.NameOfWord.Equals(wordName));
+            return files;
         }
     }
 }

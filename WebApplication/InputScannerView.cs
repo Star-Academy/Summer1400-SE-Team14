@@ -7,9 +7,16 @@ namespace ConsoleApp1
     {
         private const string BackString = "--back";
 
-        public InputScannerView()
+        public InputScannerView(IInvertedIndex index)
         {
-            
+
+            var inputScanner = new InputScanner(index);
+            while (true)
+            {
+                var input = Console.ReadLine();
+                if (string.Equals(input, BackString)) break;
+                ShowResult(inputScanner.GetOrder(input));
+            }
         }
 
         private static void ShowResult(IEnumerable<string> answer)
@@ -18,13 +25,6 @@ namespace ConsoleApp1
             {
                 Console.Out.WriteLine(s);
             }
-        }
-
-        public IEnumerable<string> start(InvertedIndex index, string input)
-        {
-            var inputScanner = new InputScanner(index);
-            Console.WriteLine(input+")))))))))");
-            return inputScanner.GetOrder(input);
         }
     }
 }

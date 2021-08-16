@@ -1,30 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace ConsoleApp1
 {
-    public static class PreProcessing
+    public class PreProcessing
     {
-        public static IEnumerable<string> Preprocesses(string input)
+        static string invalidPathString = "INVALID PATH!";
+
+        public static string Preprocesses(string input)
         {
-            var files = Directory.GetFiles(@"C:\Users\mjmah\OneDrive\Desktop\Summer1400-SE-Team14-Phase-8\TestProject1\New Folder");
-            //C:\Users\mjmah\OneDrive\Desktop\Summer1400-SE-Team14-Phase-8\TestProject1\New Folder
-            Console.WriteLine(files);
+            string[] files = Directory.GetFiles(@"C:\Users\ASUS\RiderProjects\Phase-52\TestProject1\");
+
             try
             {
-                var index = new InvertedIndex();
-                AddFilesToIndexFiles(files, index);
-                return new InputScannerView().start(index, input);
+                IInvertedIndex index = new InvertedIndex();
+
+                addFilesToIndexFiles(files, index);
+                var inputScanner = new InputScanner(index);
+                var result = inputScanner.GetOrder(input);
+                
+                var answer = "";
+                foreach (var s in result)
+                {
+                    answer += s;
+                    answer += "\n";
+                }
+
+                return answer;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                return new[] {"an error has happened!"};
+                return "an error has happened!"+e.Message;
             }
         }
 
-        private static void AddFilesToIndexFiles(IEnumerable<string> filesList, InvertedIndex index)
+        private static void addFilesToIndexFiles(string[] filesList, IInvertedIndex index)
         {
             index.IndexFile(filesList);
         }
