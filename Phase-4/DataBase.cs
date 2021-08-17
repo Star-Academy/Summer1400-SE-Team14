@@ -5,17 +5,19 @@ namespace Phase_4
 {
     public class DataBase
     {
-        public static List<Student> AllStudents { set; get; }
+        public List<Student> AllStudents { set; get; }
+
+        public static readonly DataBase DataBaseInstance = new DataBase();
 
         public static void SetAllStudents(List<Student> students)
         {
-            DataBase.AllStudents = students;
+            DataBaseInstance.AllStudents = students;
         }
 
         
         public static Student GetStudentWithStudentNumber(int studentNumber)
         {
-            return DataBase.AllStudents.FirstOrDefault(allStudent => allStudent.StudentNumber == studentNumber);
+            return DataBaseInstance.AllStudents.FirstOrDefault(allStudent => allStudent.StudentNumber == studentNumber);
         }
         public static void SetLessonsForStudents(List<LessonClass> allLessons)
         {

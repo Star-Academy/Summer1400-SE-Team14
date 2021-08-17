@@ -32,7 +32,7 @@ namespace Phase_4
 
         private static IEnumerable OrderStudentsByAverage()
         {
-            return DataBase.AllStudents.OrderByDescending(s => s.Average);
+            return DataBase.DataBaseInstance.AllStudents.OrderByDescending(s => s.Average);
         }
     }
 }
