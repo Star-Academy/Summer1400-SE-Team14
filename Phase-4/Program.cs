@@ -1,7 +1,7 @@
 ﻿
 namespace Phase_4
 {
-    public class P
+    public class Program
     {
         public static void Main(string[] args)
         {
