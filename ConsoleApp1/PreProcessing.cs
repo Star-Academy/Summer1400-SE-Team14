@@ -8,7 +8,9 @@ namespace ConsoleApp1
     {
         public static string Preprocesses()
         {
-            var files = Directory.GetFiles(@"../../../../New folder/");
+            var files = Directory.GetFiles(@"C:\Users\mjmah\OneDrive\Desktop\Summer1400-SE-Team14-Phase-8\TestProject1\New Folder");
+            //C:\Users\mjmah\OneDrive\Desktop\Summer1400-SE-Team14-Phase-8\TestProject1\New Folder
+            Console.WriteLine(files);
             try
             {
                 var index = new InvertedIndex();

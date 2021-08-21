@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
-    public class InvertedIndex : INormalize
+    public class InvertedIndex : ITextNormalizer
     {
         private readonly List<string> _stopWords = new List<string>
         {
