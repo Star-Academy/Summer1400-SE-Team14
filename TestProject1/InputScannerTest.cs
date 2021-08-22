@@ -15,7 +15,7 @@ namespace TestProject1
             List<string> list = new List<string>() {"friend"};
 
             HashSet<string> answer = new HashSet<string>()
-                {"C:\\Users\\mjmah\\OneDrive\\Desktop\\Summer1400-SE-Team14999\\TestProject1\\57110"};
+                {"C:\\..\\..\\..\\..\\..\\TestProject1\\57110"};
             invertedIndex.Search(list).Returns(answer);
             List<string> list2 = new List<string>() {"boy"};
             invertedIndex.Search(list2).Returns(new HashSet<string>());
