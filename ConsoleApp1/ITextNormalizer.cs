@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    public interface INormalize
+    public interface ITextNormalizer
     {
         List<string> NormalizeInputWords(List<string> wordsToFind);
 
