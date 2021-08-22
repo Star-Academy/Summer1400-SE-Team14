@@ -9,7 +9,7 @@ namespace ConsoleApp1
 
         public static string Preprocesses(string input)
         {
-            string[] files = Directory.GetFiles(@"C:\Users\ASUS\RiderProjects\Phase-52\TestProject1\");
+            string[] files = Directory.GetFiles(@"\..\..\..\Phase-52\TestProject1\");
 
             try
             {
