@@ -7,6 +7,6 @@ namespace ConsoleApp1
         List<string> NormalizeInputWords(List<string> wordsToFind);
 
         string ConvertToLowerCase(string wordsInFiles);
-        void ConvertFileToTokens(int fileNumber, string filePath);
+        public void ImportWordsInList(string line, int fileNumber);
     }
 }

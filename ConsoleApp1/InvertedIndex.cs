@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
-    public class InvertedIndex : IInvertedIndex, IFileHandler , INormalize
+    public class InvertedIndex : IInvertedIndex, IFileHandler , ITextNormalizer
     {
         static List<string> stopWords = new List<string>
         {
