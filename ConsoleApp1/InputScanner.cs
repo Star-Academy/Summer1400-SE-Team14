@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace ConsoleApp1
 {
-    public class InputScanner
+    public class InputScanner:IInputScanner
     {
         private readonly InvertedIndex _index;
 
