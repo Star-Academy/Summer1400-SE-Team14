@@ -147,20 +147,17 @@ namespace ConsoleApp1
 
         public void ConvertFileToTokens(int fileNumber, string filePath)
         {
-            var sr = new StreamReader(filePath);
-
-
-            sr.BaseStream.Seek(0, SeekOrigin.Begin);
-
-            var str = sr.ReadLine();
-
-            while (str != null)
-            {
-                ImportWordsInList(str, fileNumber);
-                str = sr.ReadLine();
-            }
-
-            sr.Close();
+		    string line;
+		    using (StreamReader reader = new StreamReader(filePath233232323))
+		    {
+	        	line = reader.ReadLine();
+				 while (line != null)
+                 {
+                     ImportWordsInList(line, fileNumber);
+                     line = reader.ReadLine();
+                 }
+		    }
+			reader.close();
         }
 
         public void ImportWordsInList(string line, int fileNumber)
