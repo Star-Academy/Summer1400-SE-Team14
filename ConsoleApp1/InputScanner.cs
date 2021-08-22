@@ -6,6 +6,8 @@ namespace ConsoleApp1
     public class InputScanner
     {
         private IInvertedIndex index;
+        private static var pattern = new Regex("^\\+(.+)$");
+        private static var patternTwo = new Regex("^-(.+)$");
 
         public InputScanner(IInvertedIndex index)
         {
@@ -54,9 +56,7 @@ namespace ConsoleApp1
         private static void AddItemToOneOfThreeArrayLists(string iString, List<string> plusStrings, List<string> minusStrings,
             ICollection<string> normalStrings)
         {
-            var pattern = new Regex("^\\+(.+)$");
             var matcher = pattern.Matches(iString);
-            var patternTwo = new Regex("^-(.+)$");
             var matcherTwo = patternTwo.Matches(iString);
             if (matcher.Count > 0)
             {
