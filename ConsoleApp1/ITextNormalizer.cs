@@ -8,6 +8,6 @@ namespace ConsoleApp1
 
         string ConvertToLowerCase(string wordsInFiles);
 
-        void ConvertFileToTokens(string filePath);
+        void ImportWordsInList(string line, string filePath)
     }
 }
